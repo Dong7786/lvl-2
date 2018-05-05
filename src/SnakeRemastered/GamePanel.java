@@ -1,3 +1,5 @@
+
+
 package SnakeRemastered;
 
 import java.awt.Color;
@@ -6,38 +8,48 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.ArrayList;
 
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
 public class GamePanel extends JPanel implements ActionListener, KeyListener {
+	
 	Timer timer;
 	PlayerSnake snake1 = new PlayerSnake(960, 480, 20, 20);
 	ObjectsManager manager = new ObjectsManager(snake1);
-
+boolean isMoving;
 	void updateGameState() {
 		manager.update();
+		if(snake1.up == true || snake1.down == true || snake1.right == true || snake1.left == true) {
+			isMoving = true;
+			
+		}else {
+			isMoving = false;
+			
+		}
 
 	}
-
 	void drawGameState(Graphics g) {
 		
 		manager.draw(g);
-		if (snake1.x >= 1900) {
-			snake1.x = 1900;
-		} else if (snake1.x <= 0) {
-			snake1.x = 0;
+		if (snake1.x >= 1920 && snake1.right == true) {
+			snake1.x = -60;
+		} else if (snake1.x <= -60 && snake1.left == true) {
+			snake1.x = 1920;
 
 		}
 		if (snake1.y >= 952) {
-			snake1.y = 950;
+			snake1.y = -40;
 
-		} else if (snake1.y <= 0) {
-			snake1.y = 0;
+		} else if (snake1.y <= -40) {
+			snake1.y = 952;
+			
 		}
 	}
 
 	GamePanel() {
+		
 		timer = new Timer(1000 / 14, this);
 
 	}
