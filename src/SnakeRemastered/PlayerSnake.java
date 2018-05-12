@@ -18,7 +18,7 @@ public class PlayerSnake extends GameObject {
 boolean isMoving;
 	PlayerSnake(int x, int y, int width, int height) {
 		super(x, y, width, height);
-		// TODO Auto-generated constructor stub
+		// TODO Auto-generated constructor st
 		speed = 20;
 	}
 
@@ -60,7 +60,7 @@ tail1.update();
 	void draw(Graphics g) {
 	tail1.draw(g);
 		g.fillRect(x, y, width, height);
- 
+
 
 
 	}
