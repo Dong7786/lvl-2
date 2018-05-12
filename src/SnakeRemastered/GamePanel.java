@@ -3,6 +3,7 @@
 package SnakeRemastered;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -16,7 +17,8 @@ import javax.swing.Timer;
 public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	
 	Timer timer;
-	PlayerSnake snake1 = new PlayerSnake(960, 480, 20, 20);
+	PlayerSnake snake1 = new PlayerSnake(960, 480, 19, 19);
+
 	ObjectsManager manager = new ObjectsManager(snake1);
 boolean isMoving;
 	void updateGameState() {
@@ -61,12 +63,12 @@ boolean isMoving;
 	@Override
 
 	public void paintComponent(Graphics g) {
-
+		
 		g.fillRect(0, 0, 1920, 972);
+		
 		g.setColor(Color.white);
-
 		drawGameState(g);
-		repaint();
+	repaint();
 	}
 
 	@Override

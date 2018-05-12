@@ -31,6 +31,8 @@ setup();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		panel.startGame();
 		frame.addKeyListener(panel);
+		
+		
 	}
 	
 }
