@@ -1,5 +1,4 @@
 
-
 package SnakeRemastered;
 
 import java.awt.Color;
@@ -15,43 +14,45 @@ import javax.swing.JPanel;
 import javax.swing.Timer;
 
 public class GamePanel extends JPanel implements ActionListener, KeyListener {
-	
+
 	Timer timer;
 	PlayerSnake snake1 = new PlayerSnake(960, 480, 19, 19);
 
 	ObjectsManager manager = new ObjectsManager(snake1);
-boolean isMoving;
+	boolean isMoving;
+
 	void updateGameState() {
 		manager.update();
-		if(snake1.up == true || snake1.down == true || snake1.right == true || snake1.left == true) {
+		if (snake1.up == true || snake1.down == true || snake1.right == true || snake1.left == true) {
 			isMoving = true;
-			
-		}else {
+
+		} else {
 			isMoving = false;
-			
+
 		}
 
 	}
+
 	void drawGameState(Graphics g) {
-		
+
 		manager.draw(g);
 		if (snake1.x >= 1920 && snake1.right == true) {
-			snake1.x = -60;
-		} else if (snake1.x <= -60 && snake1.left == true) {
+			snake1.x = 0;
+		} else if (snake1.x <= 0 && snake1.left == true) {
 			snake1.x = 1920;
 
 		}
 		if (snake1.y >= 952) {
-			snake1.y = -40;
+			snake1.y = -20;
 
-		} else if (snake1.y <= -40) {
+		} else if (snake1.y <= -10) {
 			snake1.y = 952;
-			
+
 		}
 	}
 
 	GamePanel() {
-		
+
 		timer = new Timer(1000 / 14, this);
 
 	}
@@ -63,12 +64,12 @@ boolean isMoving;
 	@Override
 
 	public void paintComponent(Graphics g) {
-		
+
 		g.fillRect(0, 0, 1920, 972);
-		
+
 		g.setColor(Color.white);
 		drawGameState(g);
-	repaint();
+		repaint();
 	}
 
 	@Override
@@ -83,32 +84,40 @@ boolean isMoving;
 		if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
 			// object.x = object.x + 20;
 			// snake1.x = snake1.x + snake1.speed;
-			snake1.right = true;
-			snake1.left = false;
-			snake1.up = false;
-			snake1.down = false;
+			if (snake1.left == false) {
+				snake1.right = true;
+				snake1.left = false;
+				snake1.up = false;
+				snake1.down = false;
+			}
 		}
 		if (e.getKeyCode() == KeyEvent.VK_LEFT) {
 			// object.x = object.x - 20;
 			// snake1.x = snake1.x - snake1.speed;
-			snake1.right = false;
-			snake1.left = true;
-			snake1.up = false;
-			snake1.down = false;
+			if (snake1.right == false) {
+				snake1.right = false;
+				snake1.left = true;
+				snake1.up = false;
+				snake1.down = false;
+			}
 		}
 		if (e.getKeyCode() == KeyEvent.VK_DOWN) {
 			// object.y = object.y + 20;
-			snake1.right = false;
-			snake1.left = false;
-			snake1.up = false;
-			snake1.down = true;
+			if (snake1.up == false) {
+				snake1.right = false;
+				snake1.left = false;
+				snake1.up = false;
+				snake1.down = true;
+			}
 		}
 		if (e.getKeyCode() == KeyEvent.VK_UP) {
 			// object.y = object.y - 20;
-			snake1.right = false;
-			snake1.left = false;
-			snake1.up = true;
-			snake1.down = false;
+			if (snake1.down == false) {
+				snake1.right = false;
+				snake1.left = false;
+				snake1.up = true;
+				snake1.down = false;
+			}
 		}
 
 	}

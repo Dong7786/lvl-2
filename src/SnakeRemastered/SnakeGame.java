@@ -5,24 +5,26 @@ import java.awt.Dimension;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-public class Snake {
+public class SnakeGame {
 	// max height 972
 	// max width 1920
 	public static final int WIDTH = 1920;
-	public static final int HEIGHT = 992;
+	public static final int HEIGHT = 952;
 	JFrame frame;
-GamePanel panel;
+	GamePanel panel;
+
 	public static void main(String[] args) {
-Snake snake = new Snake();
+		SnakeGame snake = new SnakeGame();
 	}
 
-	Snake() {
+	SnakeGame() {
 		frame = new JFrame();
 		panel = new GamePanel();
-setup();
+		setup();
 	}
+
 	void setup() {
-		
+
 		frame.add(panel);
 		frame.getContentPane().setPreferredSize(new Dimension(WIDTH, HEIGHT));
 		frame.pack();
@@ -31,8 +33,7 @@ setup();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		panel.startGame();
 		frame.addKeyListener(panel);
-		
-		
+
 	}
-	
+
 }

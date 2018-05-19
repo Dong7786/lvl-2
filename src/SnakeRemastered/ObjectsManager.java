@@ -3,19 +3,20 @@ package SnakeRemastered;
 import java.awt.Graphics;
 
 public class ObjectsManager {
-PlayerSnake snake;
+	PlayerSnake snake;
 
-ObjectsManager(PlayerSnake s){
-	snake = s;
-	
-}
+	ObjectsManager(PlayerSnake s) {
+		snake = s;
 
-void draw(Graphics g) {
-	snake.draw(g);
-	
-}
-void update() {
-	snake.update();
+	}
 
-}
+	void draw(Graphics g) {
+		snake.draw(g);
+
+	}
+
+	void update() {
+		snake.update();
+
+	}
 }
