@@ -16,7 +16,7 @@ import javax.swing.Timer;
 public class GamePanel extends JPanel implements ActionListener, KeyListener {
 
 	Timer timer;
-	PlayerSnake snake1 = new PlayerSnake(960, 480, 19, 19);
+	PlayerSnake snake1 = new PlayerSnake(940, 480, 19, 19);
 
 	ObjectsManager manager = new ObjectsManager(snake1);
 	boolean isMoving;
@@ -84,7 +84,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
 			// object.x = object.x + 20;
 			// snake1.x = snake1.x + snake1.speed;
-			if (snake1.left == false) {
+			if (snake1.left == false || snake1.size == 0) {
 				snake1.right = true;
 				snake1.left = false;
 				snake1.up = false;
@@ -94,7 +94,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		if (e.getKeyCode() == KeyEvent.VK_LEFT) {
 			// object.x = object.x - 20;
 			// snake1.x = snake1.x - snake1.speed;
-			if (snake1.right == false) {
+			if (snake1.right == false|| snake1.size == 0) {
 				snake1.right = false;
 				snake1.left = true;
 				snake1.up = false;
@@ -103,7 +103,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		}
 		if (e.getKeyCode() == KeyEvent.VK_DOWN) {
 			// object.y = object.y + 20;
-			if (snake1.up == false) {
+			if (snake1.up == false|| snake1.size == 0) {
 				snake1.right = false;
 				snake1.left = false;
 				snake1.up = false;
@@ -112,7 +112,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		}
 		if (e.getKeyCode() == KeyEvent.VK_UP) {
 			// object.y = object.y - 20;
-			if (snake1.down == false) {
+			if (snake1.down == false|| snake1.size == 0) {
 				snake1.right = false;
 				snake1.left = false;
 				snake1.up = true;

@@ -8,8 +8,8 @@ import javax.swing.JPanel;
 public class SnakeGame {
 	// max height 972
 	// max width 1920
-	public static final int WIDTH = 1920;
-	public static final int HEIGHT = 952;
+	public static final int WIDTH = 1911;
+	public static final int HEIGHT = 936;
 	JFrame frame;
 	GamePanel panel;
 
