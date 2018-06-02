@@ -16,9 +16,11 @@ import javax.swing.Timer;
 public class GamePanel extends JPanel implements ActionListener, KeyListener {
 
 	Timer timer;
-	PlayerSnake snake1 = new PlayerSnake(940, 480, 19, 19);
-
+	Snake snake1 = new Snake(940, 480, 19, 19);
+	
+CompGenSnakes Comp1 = new CompGenSnakes(100,100,19,19);
 	ObjectsManager manager = new ObjectsManager(snake1);
+	
 	boolean isMoving;
 
 	void updateGameState() {
@@ -36,17 +38,17 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	void drawGameState(Graphics g) {
 
 		manager.draw(g);
-		if (snake1.x >= 1920 && snake1.right == true) {
+		if (snake1.x > 1911 ) {
 			snake1.x = 0;
-		} else if (snake1.x <= 0 && snake1.left == true) {
-			snake1.x = 1920;
+		} else if (snake1.x <0 ) {
+			snake1.x = 1911;
 
 		}
-		if (snake1.y >= 952) {
-			snake1.y = -20;
+		if (snake1.y > 936) {
+			snake1.y = 0;
 
-		} else if (snake1.y <= -10) {
-			snake1.y = 952;
+		} else if (snake1.y < 0) {
+			snake1.y = 936;
 
 		}
 	}
@@ -94,7 +96,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		if (e.getKeyCode() == KeyEvent.VK_LEFT) {
 			// object.x = object.x - 20;
 			// snake1.x = snake1.x - snake1.speed;
-			if (snake1.right == false|| snake1.size == 0) {
+			if (snake1.right == false || snake1.size == 0) {
 				snake1.right = false;
 				snake1.left = true;
 				snake1.up = false;
@@ -103,7 +105,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		}
 		if (e.getKeyCode() == KeyEvent.VK_DOWN) {
 			// object.y = object.y + 20;
-			if (snake1.up == false|| snake1.size == 0) {
+			if (snake1.up == false || snake1.size == 0) {
 				snake1.right = false;
 				snake1.left = false;
 				snake1.up = false;
@@ -112,7 +114,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		}
 		if (e.getKeyCode() == KeyEvent.VK_UP) {
 			// object.y = object.y - 20;
-			if (snake1.down == false|| snake1.size == 0) {
+			if (snake1.down == false || snake1.size == 0) {
 				snake1.right = false;
 				snake1.left = false;
 				snake1.up = true;

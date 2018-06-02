@@ -13,6 +13,7 @@ public class Tail extends GameObject {
 
 	void update() {
 		super.update();
+		collisionBox.setBounds(x, y, width, height);
 
 	}
 

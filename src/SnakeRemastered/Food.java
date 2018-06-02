@@ -17,7 +17,7 @@ public class Food extends GameObject {
 
 	void draw(Graphics g) {
 		g.setColor(Color.YELLOW);
-g.fillRect(x, y, width, height);
+		g.fillRect(x, y, width, height);
 	}
 
 }
