@@ -3,7 +3,9 @@ package SnakeRemastered;
 import java.awt.Dimension;
 
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 public class SnakeGame {
 	// max height 972
@@ -18,12 +20,14 @@ public class SnakeGame {
 	}
 
 	SnakeGame() {
+
 		frame = new JFrame();
 		panel = new GamePanel();
 		setup();
 	}
 
 	void setup() {
+		
 
 		frame.add(panel);
 		frame.getContentPane().setPreferredSize(new Dimension(WIDTH, HEIGHT));

@@ -17,11 +17,11 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 
 	Timer timer;
 	Snake snake1 = new Snake(940, 480, 19, 19);
-	
-CompGenSnakes Comp1 = new CompGenSnakes(100,100,19,19);
+Snake CSnake = new Snake(460, 240, 19, 19);
 	ObjectsManager manager = new ObjectsManager(snake1);
-	
+
 	boolean isMoving;
+	static boolean keyPressed = false;
 
 	void updateGameState() {
 		manager.update();
@@ -38,16 +38,16 @@ CompGenSnakes Comp1 = new CompGenSnakes(100,100,19,19);
 	void drawGameState(Graphics g) {
 
 		manager.draw(g);
-		if (snake1.x > 1911 ) {
+		if (snake1.x >= 1911) {
 			snake1.x = 0;
-		} else if (snake1.x <0 ) {
+		} else if (snake1.x <= 0) {
 			snake1.x = 1911;
 
 		}
-		if (snake1.y > 936) {
+		if (snake1.y >= 936) {
 			snake1.y = 0;
 
-		} else if (snake1.y < 0) {
+		} else if (snake1.y <= 0) {
 			snake1.y = 936;
 
 		}
@@ -86,38 +86,44 @@ CompGenSnakes Comp1 = new CompGenSnakes(100,100,19,19);
 		if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
 			// object.x = object.x + 20;
 			// snake1.x = snake1.x + snake1.speed;
-			if (snake1.left == false || snake1.size == 0) {
+
+			if ((snake1.left == false || snake1.size == 0) && keyPressed == false) {
+				keyPressed = true;
 				snake1.right = true;
 				snake1.left = false;
 				snake1.up = false;
 				snake1.down = false;
+
 			}
-		}
-		if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+		} else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
 			// object.x = object.x - 20;
 			// snake1.x = snake1.x - snake1.speed;
-			if (snake1.right == false || snake1.size == 0) {
-				snake1.right = false;
+			if ((snake1.right == false || snake1.size == 0) && keyPressed == false) {
+				keyPressed = true;
 				snake1.left = true;
+				snake1.right = false;
 				snake1.up = false;
 				snake1.down = false;
+
 			}
-		}
-		if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+		} else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
 			// object.y = object.y + 20;
-			if (snake1.up == false || snake1.size == 0) {
+			if ((snake1.up == false || snake1.size == 0) && keyPressed == false) {
+				keyPressed = true;
+				snake1.down = true;
 				snake1.right = false;
 				snake1.left = false;
 				snake1.up = false;
-				snake1.down = true;
+
 			}
-		}
-		if (e.getKeyCode() == KeyEvent.VK_UP) {
+		} else if (e.getKeyCode() == KeyEvent.VK_UP) {
 			// object.y = object.y - 20;
-			if (snake1.down == false || snake1.size == 0) {
+			if ((snake1.down == false || snake1.size == 0) && keyPressed == false) {
+				keyPressed = true;
+				snake1.up = true;
 				snake1.right = false;
 				snake1.left = false;
-				snake1.up = true;
+
 				snake1.down = false;
 			}
 		}

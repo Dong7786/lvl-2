@@ -6,14 +6,15 @@ import java.util.Random;
 
 public class ObjectsManager {
 	Snake snake;
-ArrayList<Snake> snakes = new ArrayList<Snake>();
-ArrayList<Food> food = new ArrayList<Food>();
-int foodAmount = 0;
-int randX;
-int randY;
-boolean isFood = false;
-ArrayList<Integer> xPos = new ArrayList<Integer>();
-ArrayList<Integer> yPos = new ArrayList<Integer>();
+	ArrayList<Snake> snakes = new ArrayList<Snake>();
+	ArrayList<Food> food = new ArrayList<Food>();
+	int foodAmount = 0;
+	int randX;
+	int randY;
+	boolean isFood = false;
+	ArrayList<Integer> xPos = new ArrayList<Integer>();
+	ArrayList<Integer> yPos = new ArrayList<Integer>();
+
 	ObjectsManager(Snake s) {
 		snake = s;
 
@@ -35,7 +36,7 @@ ArrayList<Integer> yPos = new ArrayList<Integer>();
 		}
 		randX = xPos.get(new Random().nextInt(xPos.size()));
 		randY = yPos.get(new Random().nextInt(yPos.size()));
-		
+
 		for (int i = 0; i < food.size(); i++) {
 			food.get(i).update();
 		}
@@ -65,10 +66,19 @@ ArrayList<Integer> yPos = new ArrayList<Integer>();
 				foodAmount = foodAmount - 1;
 			}
 		}
-		for (int i = 0; i < snake.tail.size(); i++) {
-		
-			if(snake.collisionBox.intersects(snake.tail.get(i).collisionBox)) {
-				System.out.println("Hit");
+		for (int i = 0; i < snake.tail.size() - 1; i++) {
+
+			if (snake.tail.get(snake.tail.size() - 1).collisionBox.intersects(snake.tail.get(i).collisionBox)) {
+				food.removeAll(food);
+				foodAmount = 0;
+				snake.size = 0;
+				snake.x = 940;
+				snake.y = 480;
+snake.up = false;
+snake.down = false;
+snake.right = false;
+snake.left = false;
+break;
 			}
 		}
 	}
