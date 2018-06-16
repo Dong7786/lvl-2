@@ -48,11 +48,14 @@ public class Snake extends GameObject {
 		if (down == true) {
 			downTail = true;
 			y = y + speed;
+		
 			upTail = false;
 			rightTail = false;
 			leftTail = false;
 			GamePanel.keyPressed = false;
+			GamePanel.pressedKey = false;
 		}
+		
 		if (up == true) {
 			upTail = true;
 			y = y - speed;
@@ -60,6 +63,7 @@ public class Snake extends GameObject {
 			leftTail = false;
 			rightTail = false;
 			GamePanel.keyPressed = false;
+			GamePanel.pressedKey = false;
 		}
 		if (left == true) {
 			leftTail = true;
@@ -68,6 +72,7 @@ public class Snake extends GameObject {
 			upTail = false;
 			downTail = false;
 			GamePanel.keyPressed = false;
+			GamePanel.pressedKey = false;
 		}
 		if (right == true) {
 			rightTail = true;
@@ -76,7 +81,9 @@ public class Snake extends GameObject {
 			upTail = false;
 			downTail = false;
 			GamePanel.keyPressed = false;
+			GamePanel.pressedKey = false;
 		}
+		
 		tail.add(new Tail(x, y, 19, 19));
 
 		if (up == true || down == true || right == true || left == true) {
@@ -90,9 +97,7 @@ public class Snake extends GameObject {
 
 	void draw(Graphics g) {
 	
-		Font font = new Font("TRUETYPE_FONT",Font.BOLD, 25);
-		g.setFont(font);
-		g.drawString("Score = " + (size+1), 10, 40);
+		
 		for (int i = 0; i < tail.size(); i++) {
 			tail.get(i).draw(g);
 

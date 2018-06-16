@@ -1,11 +1,12 @@
 package SnakeRemastered;
 
+import java.awt.Font;
 import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.Random;
 
 public class ObjectsManager {
-	Snake snake;
+	
 	ArrayList<Snake> snakes = new ArrayList<Snake>();
 	ArrayList<Food> food = new ArrayList<Food>();
 	int foodAmount = 0;
@@ -15,18 +16,26 @@ public class ObjectsManager {
 	ArrayList<Integer> xPos = new ArrayList<Integer>();
 	ArrayList<Integer> yPos = new ArrayList<Integer>();
 
-	ObjectsManager(Snake s) {
-		snake = s;
-
-	}
+	ObjectsManager(Snake s, Snake sn) {
+		
+		
+snakes.add(s);
+snakes.add(sn);
+}
 
 	void draw(Graphics g) {
-		snake.draw(g);
+		for(int i = 0; i < snakes.size(); i ++) {
+			snakes.get(i).draw(g);
+		}
 		for (int i = 0; i < food.size(); i++) {
 			food.get(i).draw(g);
+			
 		}
+		Font font = new Font("TRUETYPE_FONT",Font.BOLD, 25);
+		g.setFont(font);
+		g.drawString("Score = " + (snakes.get(0).size+1), 10, 40);
 	}
-
+	
 	void update() {
 		for (int i = 0; i < 1919; i += 20) {
 			xPos.add(i);
@@ -40,7 +49,9 @@ public class ObjectsManager {
 		for (int i = 0; i < food.size(); i++) {
 			food.get(i).update();
 		}
-		snake.update();
+		for(int i = 0; i < snakes.size(); i ++) {
+			snakes.get(i).update();
+		}
 		checkCollision();
 		if (isFood == false) {
 
@@ -58,28 +69,34 @@ public class ObjectsManager {
 	}
 
 	void checkCollision() {
-
+for(int j = 0; j < snakes.size(); j ++) {
 		for (int i = 0; i < food.size(); i++) {
-			if (snake.collisionBox.intersects(food.get(i).collisionBox)) {
+			if (snakes.get(j).collisionBox.intersects(food.get(i).collisionBox)) {
 				food.remove(i);
-				snake.size = snake.size + 2;
+				snakes.get(j).size = snakes.get(j).size + 2;
 				foodAmount = foodAmount - 1;
 			}
 		}
-		for (int i = 0; i < snake.tail.size() - 1; i++) {
+		for (int i = 0; i < snakes.get(j).tail.size() - 1; i++) {
 
-			if (snake.tail.get(snake.tail.size() - 1).collisionBox.intersects(snake.tail.get(i).collisionBox)) {
-				food.removeAll(food);
-				foodAmount = 0;
-				snake.size = 0;
-				snake.x = 940;
-				snake.y = 480;
-snake.up = false;
-snake.down = false;
-snake.right = false;
-snake.left = false;
+			if (snakes.get(j).tail.get(snakes.get(j).tail.size() - 1).collisionBox.intersects(snakes.get(j).tail.get(i).collisionBox)) {
+			
+				
+				snakes.get(j).size = 0;
+				if(j == 0) {
+				snakes.get(j).x = 940;
+				snakes.get(j).y = 480;
+				}else if(j == 1) {
+					snakes.get(j).x = 460;
+					snakes.get(j).y = 240;
+				}
+				snakes.get(j).up = false;
+				snakes.get(j).down = false;
+				snakes.get(j).right = false;
+				snakes.get(j).left = false;
 break;
 			}
 		}
 	}
+}
 }
