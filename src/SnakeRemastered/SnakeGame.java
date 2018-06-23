@@ -10,8 +10,8 @@ import javax.swing.JTextField;
 public class SnakeGame {
 	// max height 972
 	// max width 1920
-	public static final int WIDTH = 1899;
-	public static final int HEIGHT = 939;
+	public static final int WIDTH = 1919;
+	public static final int HEIGHT = 959;
 	JFrame frame;
 	GamePanel panel;
 

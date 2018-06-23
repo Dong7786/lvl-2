@@ -78,7 +78,7 @@ for(int j = 0; j < snakes.size(); j ++) {
 			}
 		}
 		for (int i = 0; i < snakes.get(j).tail.size() - 1; i++) {
-
+			
 			if (snakes.get(j).tail.get(snakes.get(j).tail.size() - 1).collisionBox.intersects(snakes.get(j).tail.get(i).collisionBox)) {
 			
 				
@@ -90,13 +90,109 @@ for(int j = 0; j < snakes.size(); j ++) {
 					snakes.get(j).x = 460;
 					snakes.get(j).y = 240;
 				}
+			
+					
 				snakes.get(j).up = false;
 				snakes.get(j).down = false;
 				snakes.get(j).right = false;
 				snakes.get(j).left = false;
+				
 break;
+
+			}
+			if( j == 0) {
+				for(int x = 0; x < snakes.get(1).tail.size() -1 ; x ++) {
+			if(snakes.get(0).tail.get(i).collisionBox.intersects(snakes.get(1).tail.get(x).collisionBox)){
+	
+				if(snakes.get(1).up && snakes.get(0).down) {
+					snakes.get(1).x = 940;
+					snakes.get(1).y = 480;
+					snakes.get(0).x = 460;
+					snakes.get(0).y = 240;
+					snakes.get(1).size = 0;
+					snakes.get(0).size = 0;
+					snakes.get(1).up = false;
+					snakes.get(1).down = false;
+					snakes.get(1).right = false;
+					snakes.get(1).left = false;
+					snakes.get(0).up = false;
+					snakes.get(0).down = false;
+					snakes.get(0).right = false;
+					snakes.get(0).left = false;
+				}else if(snakes.get(1).down && snakes.get(0).up) {
+					snakes.get(1).x = 940;
+					snakes.get(1).y = 480;
+					snakes.get(0).x = 460;
+					snakes.get(0).y = 240;
+					snakes.get(1).size = 0;
+					snakes.get(0).size = 0;
+					snakes.get(1).up = false;
+					snakes.get(1).down = false;
+					snakes.get(1).right = false;
+					snakes.get(1).left = false;
+					snakes.get(0).up = false;
+					snakes.get(0).down = false;
+					snakes.get(0).right = false;
+					snakes.get(0).left = false;
+				}else if(snakes.get(1).left && snakes.get(0).right) {
+					snakes.get(1).x = 940;
+					snakes.get(1).y = 480;
+					snakes.get(0).x = 460;
+					snakes.get(0).y = 240;
+					snakes.get(1).size = 0;
+					snakes.get(0).size = 0;
+					snakes.get(1).up = false;
+					snakes.get(1).down = false;
+					snakes.get(1).right = false;
+					snakes.get(1).left = false;
+					snakes.get(0).up = false;
+					snakes.get(0).down = false;
+					snakes.get(0).right = false;
+					snakes.get(0).left = false;
+				}else if(snakes.get(1).right && snakes.get(0).left) {
+					snakes.get(1).x = 940;
+					snakes.get(1).y = 480;
+					snakes.get(0).x = 460;
+					snakes.get(0).y = 240;
+					snakes.get(1).size = 0;
+					snakes.get(0).size = 0;
+					snakes.get(1).up = false;
+					snakes.get(1).down = false;
+					snakes.get(1).right = false;
+					snakes.get(1).left = false;
+					snakes.get(0).up = false;
+					snakes.get(0).down = false;
+					snakes.get(0).right = false;
+					snakes.get(0).left = false;
+				
+			}else {
+					snakes.get(1).x = 940;
+					snakes.get(1).y = 480;
+					snakes.get(1).size = 0;
+					snakes.get(1).up = false;
+					snakes.get(1).down = false;
+					snakes.get(1).right = false;
+					snakes.get(1).left = false;
+				}
+				
+			}
+				}
+				if( j == 1) {
+					for(int x = 0;x < snakes.get(0).tail.size() -1 ; x++) {
+				if(snakes.get(1).tail.get(i).collisionBox.intersects(snakes.get(0).tail.get(x).collisionBox)) {
+				snakes.get(0).x = 460;
+				snakes.get(0).y = 240;
+				snakes.get(0).size = 0;
+				snakes.get(0).up = false;
+				snakes.get(0).down = false;
+				snakes.get(0).right = false;
+				snakes.get(0).left = false;
+				}
+			}
+				}
 			}
 		}
 	}
+
 }
 }

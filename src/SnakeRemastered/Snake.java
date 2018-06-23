@@ -21,7 +21,7 @@ public class Snake extends GameObject {
 	boolean leftTail;
 	boolean rightTail;
 	boolean isMoving;
-	int size = 0;
+	int size = 1;
 
 	Snake(int x, int y, int width, int height) {
 		super(x, y, width, height);
