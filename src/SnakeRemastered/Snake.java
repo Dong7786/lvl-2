@@ -1,3 +1,4 @@
+
 package SnakeRemastered;
 
 import java.awt.Color;
@@ -21,7 +22,7 @@ public class Snake extends GameObject {
 	boolean leftTail;
 	boolean rightTail;
 	boolean isMoving;
-	int size = 1;
+	int size = 0;
 
 	Snake(int x, int y, int width, int height) {
 		super(x, y, width, height);
@@ -103,7 +104,7 @@ public class Snake extends GameObject {
 
 		}
 
-		g.setColor(Color.WHITE);
+		g.setColor(Color.RED);
 		g.fillRect(x, y, width, height);
 
 	}

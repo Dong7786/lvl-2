@@ -71,7 +71,7 @@ Snake CSnake = new Snake(460, 240, 19, 19);
 
 	GamePanel() {
 
-		timer = new Timer(1000 / 11, this);
+		timer = new Timer(1000 / 12, this);
 
 	}
 
