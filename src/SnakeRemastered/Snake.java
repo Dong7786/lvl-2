@@ -22,7 +22,7 @@ public class Snake extends GameObject {
 	boolean leftTail;
 	boolean rightTail;
 	boolean isMoving;
-	int size = 0;
+	int size = 3;
 
 	Snake(int x, int y, int width, int height) {
 		super(x, y, width, height);
@@ -49,14 +49,14 @@ public class Snake extends GameObject {
 		if (down == true) {
 			downTail = true;
 			y = y + speed;
-		
+
 			upTail = false;
 			rightTail = false;
 			leftTail = false;
 			GamePanel.keyPressed = false;
 			GamePanel.pressedKey = false;
 		}
-		
+
 		if (up == true) {
 			upTail = true;
 			y = y - speed;
@@ -84,7 +84,7 @@ public class Snake extends GameObject {
 			GamePanel.keyPressed = false;
 			GamePanel.pressedKey = false;
 		}
-		
+
 		tail.add(new Tail(x, y, 19, 19));
 
 		if (up == true || down == true || right == true || left == true) {
@@ -96,15 +96,63 @@ public class Snake extends GameObject {
 
 	}
 
-	void draw(Graphics g) {
-	
+	void AI() {
+		int foodY = ObjectsManager.food.get(0).x;
+		int foodX = ObjectsManager.food.get(0).x;
 		
+		double shortDis = Math.sqrt(Math.pow(foodX - this.x, 2) + Math.pow(foodY - this.y, 2));
+
+		for (int i = 0; i < ObjectsManager.food.size(); i++) {
+			double currentDis = Math.sqrt(Math.pow(ObjectsManager.food.get(i).x - this.x, 2)
+					+ Math.pow(ObjectsManager.food.get(i).y - this.y, 2));
+
+			if (currentDis < shortDis) {
+				shortDis = currentDis;
+				foodX = ObjectsManager.food.get(i).x;
+				foodY = ObjectsManager.food.get(i).y;
+
+			}
+
+		}
+		if(Math.abs(foodX - this.x) <= Math.abs(foodY - this.y) && (foodX - this.x)!= 0) {
+			if(foodX > this.x && right == false) {
+				left = true;
+				right = false;
+				up = false;
+				down = false;
+			}else if(foodX > this.x && left == false) {
+				left = false;
+				right = true;
+				up = false;
+				down = false;
+			}
+			
+		}else if ((foodY - this.y)!= 0){
+			if(foodY > this.y && up == false) {
+				left = false;
+				right = false;
+				up = true;
+				down = false;
+			}else if(foodY > this.y && down == false) {
+				left = false;
+				right = false;
+				up = false;
+				down = true;
+			}
+		}
+		
+		
+
+	}
+
+	void draw(Graphics g) {
+
 		for (int i = 0; i < tail.size(); i++) {
 			tail.get(i).draw(g);
 
 		}
 
-		g.setColor(Color.RED);
+		g.setColor(Color.WHITE);
 		g.fillRect(x, y, width, height);
 
 	}

@@ -9,7 +9,7 @@ import java.util.Random;
 public class ObjectsManager {
 
 	ArrayList<Snake> snakes = new ArrayList<Snake>();
-	ArrayList<Food> food = new ArrayList<Food>();
+	static ArrayList<Food> food = new ArrayList<Food>();
 	int foodAmount = 0;
 	int randX;
 	int randY;
@@ -51,7 +51,9 @@ public class ObjectsManager {
 		}
 		for (int i = 0; i < snakes.size(); i++) {
 			snakes.get(i).update();
+			
 		}
+		
 		checkCollision();
 		if (isFood == false) {
 
@@ -66,8 +68,9 @@ public class ObjectsManager {
 		if (foodAmount < 3) {
 			isFood = false;
 		}
+		snakes.get(1).AI();
 	}
-
+	
 	void checkCollision() {
 		
 		if(snakes.get(0).collisionBox.intersects(snakes.get(1).collisionBox)){
