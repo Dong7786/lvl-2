@@ -5,7 +5,6 @@ import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.Random;
 
-
 public class ObjectsManager {
 
 	ArrayList<Snake> snakes = new ArrayList<Snake>();
@@ -18,9 +17,33 @@ public class ObjectsManager {
 	ArrayList<Integer> yPos = new ArrayList<Integer>();
 
 	ObjectsManager(Snake s, Snake sn) {
+		for (int i = 0; i < 1900; i += 20) {
+			xPos.add(i);
+		}
+		for (int i = 0; i < 920; i += 20) {
+			yPos.add(i);
+		}
+
+		randX = xPos.get(new Random().nextInt(xPos.size()));
+		randY = yPos.get(new Random().nextInt(yPos.size()));
+		food.add(new Food(randX, randY, 19, 19));
+
+		randX = xPos.get(new Random().nextInt(xPos.size()));
+		randY = yPos.get(new Random().nextInt(yPos.size()));
+		food.add(new Food(randX, randY, 19, 19));
+
+		randX = xPos.get(new Random().nextInt(xPos.size()));
+		randY = yPos.get(new Random().nextInt(yPos.size()));
+		food.add(new Food(randX, randY, 19, 19));
+
+		foodAmount = foodAmount + 3;
 
 		snakes.add(s);
 		snakes.add(sn);
+		snakes.get(1).up = true;
+		snakes.get(1).closestFood();
+		System.out.println(snakes.get(1).foodX);
+		System.out.println(snakes.get(1).foodY);
 	}
 
 	void draw(Graphics g) {
@@ -37,12 +60,6 @@ public class ObjectsManager {
 	}
 
 	void update() {
-		for (int i = 0; i < 1919; i += 20) {
-			xPos.add(i);
-		}
-		for (int i = 0; i < 950; i += 20) {
-			yPos.add(i);
-		}
 		randX = xPos.get(new Random().nextInt(xPos.size()));
 		randY = yPos.get(new Random().nextInt(yPos.size()));
 
@@ -51,10 +68,17 @@ public class ObjectsManager {
 		}
 		for (int i = 0; i < snakes.size(); i++) {
 			snakes.get(i).update();
-			
+
+		}
+
+		checkCollision();
+		if (foodAmount >= 3) {
+			isFood = true;
+		}
+		if (foodAmount < 3) {
+			isFood = false;
 		}
 		
-		checkCollision();
 		if (isFood == false) {
 
 			food.add(new Food(randX, randY, 19, 19));
@@ -62,18 +86,13 @@ public class ObjectsManager {
 			foodAmount = foodAmount + 1;
 
 		}
-		if (foodAmount == 3) {
-			isFood = true;
-		}
-		if (foodAmount < 3) {
-			isFood = false;
-		}
+		
 		snakes.get(1).AI();
 	}
-	
+
 	void checkCollision() {
-		
-		if(snakes.get(0).collisionBox.intersects(snakes.get(1).collisionBox)){
+
+		if (snakes.get(0).collisionBox.intersects(snakes.get(1).collisionBox)) {
 			snakes.get(1).x = 940;
 			snakes.get(1).y = 480;
 			snakes.get(1).size = 0;
@@ -81,7 +100,7 @@ public class ObjectsManager {
 			snakes.get(1).down = false;
 			snakes.get(1).right = false;
 			snakes.get(1).left = false;
-			
+
 			snakes.get(0).x = 460;
 			snakes.get(0).y = 240;
 			snakes.get(0).size = 0;
@@ -90,8 +109,8 @@ public class ObjectsManager {
 			snakes.get(0).right = false;
 			snakes.get(0).left = false;
 		}
-		for(int i = 0; i < snakes.get(0).tail.size(); i++) {
-			if(snakes.get(1).collisionBox.intersects(snakes.get(0).tail.get(i).collisionBox)) {
+		for (int i = 0; i < snakes.get(0).tail.size(); i++) {
+			if (snakes.get(1).collisionBox.intersects(snakes.get(0).tail.get(i).collisionBox)) {
 				snakes.get(1).x = 940;
 				snakes.get(1).y = 480;
 				snakes.get(1).size = 0;
@@ -99,11 +118,11 @@ public class ObjectsManager {
 				snakes.get(1).down = false;
 				snakes.get(1).right = false;
 				snakes.get(1).left = false;
-				
+
 			}
 		}
-		for(int i = 0; i < snakes.get(1).tail.size();i++) {
-			if(snakes.get(0).collisionBox.intersects(snakes.get(1).tail.get(i).collisionBox)) {
+		for (int i = 0; i < snakes.get(1).tail.size(); i++) {
+			if (snakes.get(0).collisionBox.intersects(snakes.get(1).tail.get(i).collisionBox)) {
 				snakes.get(0).x = 460;
 				snakes.get(0).y = 240;
 				snakes.get(0).size = 0;
@@ -113,17 +132,18 @@ public class ObjectsManager {
 				snakes.get(0).left = false;
 			}
 		}
-		
-		
-		
+
 		for (int j = 0; j < snakes.size(); j++) {
 			for (int i = 0; i < food.size(); i++) {
 				if (snakes.get(j).collisionBox.intersects(food.get(i).collisionBox)) {
 					food.remove(i);
 					snakes.get(j).size = snakes.get(j).size + 2;
 					foodAmount = foodAmount - 1;
+					if (j == 1) {
+						snakes.get(1).closestFood();
+					}
 				}
-				
+
 			}
 		}
 	}

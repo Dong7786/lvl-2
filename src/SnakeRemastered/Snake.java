@@ -22,7 +22,7 @@ public class Snake extends GameObject {
 	boolean leftTail;
 	boolean rightTail;
 	boolean isMoving;
-	int size = 3;
+	int size = 0;
 
 	Snake(int x, int y, int width, int height) {
 		super(x, y, width, height);
@@ -96,10 +96,13 @@ public class Snake extends GameObject {
 
 	}
 
-	void AI() {
-		int foodY = ObjectsManager.food.get(0).x;
-		int foodX = ObjectsManager.food.get(0).x;
-		
+	int foodY;
+	int foodX;
+
+	void closestFood() {
+		foodY = ObjectsManager.food.get(0).x;
+		foodX = ObjectsManager.food.get(0).x;
+
 		double shortDis = Math.sqrt(Math.pow(foodX - this.x, 2) + Math.pow(foodY - this.y, 2));
 
 		for (int i = 0; i < ObjectsManager.food.size(); i++) {
@@ -114,35 +117,28 @@ public class Snake extends GameObject {
 			}
 
 		}
-		if(Math.abs(foodX - this.x) <= Math.abs(foodY - this.y) && (foodX - this.x)!= 0) {
-			if(foodX > this.x && right == false) {
+	}
+
+	void AI() {
+ 
+		if(foodX <= foodY) {
+			if(foodX < this.x && right == false) {
 				left = true;
-				right = false;
-				up = false;
-				down = false;
-			}else if(foodX > this.x && left == false) {
-				left = false;
+			}
+			else if(foodX > this.x && left == false) {
 				right = true;
-				up = false;
-				down = false;
 			}
 			
-		}else if ((foodY - this.y)!= 0){
-			if(foodY > this.y && up == false) {
-				left = false;
-				right = false;
+		} else { 
+			if(foodY < this.y && down == false) {
 				up = true;
-				down = false;
-			}else if(foodY > this.y && down == false) {
-				left = false;
-				right = false;
-				up = false;
+			}else if(foodY > this.y && up == false) {
 				down = true;
 			}
+			
+			
 		}
 		
-		
-
 	}
 
 	void draw(Graphics g) {

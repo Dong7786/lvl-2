@@ -83,7 +83,7 @@ Snake CSnake = new Snake(460, 240, 19, 19);
 
 	public void paintComponent(Graphics g) {
 
-		g.fillRect(0, 0, 1920, 972);
+		g.fillRect(0, 0, 1900, 940);
 
 		g.setColor(Color.white);
 		drawGameState(g);
