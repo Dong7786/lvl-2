@@ -144,7 +144,7 @@ Snake CSnake = new Snake(460, 240, 19, 19);
 				snake1.down = false;
 			}
 		}
-		
+	
 		
 		
 		
