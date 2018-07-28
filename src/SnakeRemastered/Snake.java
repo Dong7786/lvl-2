@@ -2,7 +2,6 @@
 package SnakeRemastered;
 
 import java.awt.Color;
-import java.awt.Font;
 import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.Random;
@@ -121,39 +120,33 @@ public class Snake extends GameObject {
 
 	void AI() {
 
-		if(foodX <= foodY) {
-			if(foodX < this.x && right == false) {
-				left = true;
-				right = false;
-				up = false;
-				down = false;
-				
-				
-			}
-			else if(foodX > this.x && left == false) {
-				right = true;
-				left = false;
-				up = false;
-				down = false;
-			}
-			
-		} else { 
-			if(foodY < this.y && down == false) {
-				up = true;
-				left = false;
-				right = false;
-				down = false;
-			}else if(foodY > this.y && up == false) {
-				down = true;
-				left = false;
-				right = false;
-				up = false;
-				
-			}
-			
-			
-		}
-		
+		// if (foodX <= foodY) {
+		// if (foodX < this.x && right == false) {
+		// left = true;
+		// right = false;
+		// up = false;
+		// down = false;
+		//
+		// } else if (foodX > this.x && left == false) {
+		// right = true;
+		// left = false;
+		// up = false;
+		// down = false;
+		// }
+		//
+		// } else if (foodX > foodY) {
+		// if (foodY < this.y && down == false) {
+		// up = true;
+		// left = false;
+		// right = false;
+		// down = false;
+		// } else if (foodY > this.y && up == false) {
+		// down = true;
+		// left = false;
+		// right = false;
+		// up = false;
+		//
+		// }
 	}
 
 	void draw(Graphics g) {
