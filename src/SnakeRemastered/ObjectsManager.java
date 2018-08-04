@@ -111,7 +111,7 @@ public class ObjectsManager {
 			}
 			for (int x = 0; x < snakes.get(i).tail.size(); x++) {
 				if(snakes.get(i).tail.get(x).x / 20 >= 0 && snakes.get(i).tail.get(x).y / 20 >= 0) {
-					
+					System.out.println(yPos);
 				xPos.remove(snakes.get(i).tail.get(x).x / 20);
 				yPos.remove(snakes.get(i).tail.get(x).y / 20);
 				}
