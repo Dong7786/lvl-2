@@ -44,6 +44,8 @@ public class ObjectsManager {
 		snakes.get(1).closestFood();
 		System.out.println(snakes.get(1).foodX);
 		System.out.println(snakes.get(1).foodY);
+		System.out.println(xPos);
+		
 	}
 
 	void draw(Graphics g) {
@@ -61,7 +63,7 @@ public class ObjectsManager {
 
 	void update() {
 
-		checkPosition();
+		
 		randX = xPos.get(new Random().nextInt(xPos.size()));
 		randY = yPos.get(new Random().nextInt(yPos.size()));
 
@@ -89,7 +91,7 @@ public class ObjectsManager {
 
 		}
 		snakes.get(1).AI();
-
+		checkPosition();
 	}
 
 	void checkPosition() {
@@ -100,11 +102,19 @@ public class ObjectsManager {
 			yPos.add(i);
 		}
 		for (int i = 0; i < snakes.size(); i++) {
-			xPos.remove(snakes.get(i).x / 20);
-			yPos.remove(snakes.get(i).y / 20);
+			int xPosition = snakes.get(i).x / 20;
+			int y = snakes.get(i).y / 20;
+			if(xPosition >= 0 && y >= 0) {
+					
+			xPos.remove(xPosition);
+			yPos.remove(y);
+			}
 			for (int x = 0; x < snakes.get(i).tail.size(); x++) {
+				if(snakes.get(i).tail.get(x).x / 20 >= 0 && snakes.get(i).tail.get(x).y / 20 >= 0) {
+					
 				xPos.remove(snakes.get(i).tail.get(x).x / 20);
 				yPos.remove(snakes.get(i).tail.get(x).y / 20);
+				}
 			}
 		}
 
