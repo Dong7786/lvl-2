@@ -120,7 +120,6 @@ public class Snake extends GameObject {
 
 	void AI() {
 
-		
 	}
 
 	void draw(Graphics g) {
