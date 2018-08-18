@@ -12,7 +12,9 @@ public class ObjectsManager {
 	int foodAmount = 0;
 	int randX;
 	int randY;
+
 	boolean isFood = false;
+	int[][] arr = new int[94][45];
 	ArrayList<Integer> xPos = new ArrayList<Integer>();
 	ArrayList<Integer> yPos = new ArrayList<Integer>();
 
@@ -44,7 +46,7 @@ public class ObjectsManager {
 		snakes.get(1).closestFood();
 		System.out.println(snakes.get(1).foodX);
 		System.out.println(snakes.get(1).foodY);
-		System.out.println(xPos);
+		System.out.println(yPos);
 
 	}
 

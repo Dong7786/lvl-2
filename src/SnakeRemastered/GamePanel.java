@@ -2,13 +2,11 @@
 package SnakeRemastered;
 
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.util.ArrayList;
 
 import javax.swing.JPanel;
 import javax.swing.Timer;
@@ -17,7 +15,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 
 	Timer timer;
 	Snake snake1 = new Snake(940, 480, 19, 19);
-Snake CSnake = new Snake(460, 240, 19, 19);
+	Snake CSnake = new Snake(460, 240, 19, 19);
 	ObjectsManager manager = new ObjectsManager(snake1, CSnake);
 
 	boolean isMoving;
@@ -53,21 +51,21 @@ Snake CSnake = new Snake(460, 240, 19, 19);
 			snake1.y = 920;
 
 		}
-	
-	if (CSnake.x > 1880) {
-		CSnake.x = 0;
-	} else if (CSnake.x < 0) {
-		CSnake.x = 1880;
 
+		if (CSnake.x > 1880) {
+			CSnake.x = 0;
+		} else if (CSnake.x < 0) {
+			CSnake.x = 1880;
+
+		}
+		if (CSnake.y > 920) {
+			CSnake.y = 0;
+
+		} else if (CSnake.y < 0) {
+			CSnake.y = 920;
+
+		}
 	}
-	if (CSnake.y > 920) {
-		CSnake.y = 0;
-
-	} else if (CSnake.y < 0) {
-		CSnake.y = 920;
-
-	}
-}
 
 	GamePanel() {
 
@@ -99,6 +97,7 @@ Snake CSnake = new Snake(460, 240, 19, 19);
 	@Override
 	public void keyPressed(KeyEvent e) {
 		// TODO Auto-generated method stub
+
 		if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
 			// object.x = object.x + 20;
 			// snake1.x = snake1.x + snake1.speed;
@@ -111,7 +110,7 @@ Snake CSnake = new Snake(460, 240, 19, 19);
 				snake1.down = false;
 
 			}
-			
+
 		} else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
 			// object.x = object.x - 20;
 			// snake1.x = snake1.x - snake1.speed;
@@ -144,10 +143,7 @@ Snake CSnake = new Snake(460, 240, 19, 19);
 				snake1.down = false;
 			}
 		}
-	
-		
-		
-		
+
 		// -- CSnake
 		if (e.getKeyCode() == KeyEvent.VK_D) {
 			// object.x = object.x + 20;
@@ -161,7 +157,7 @@ Snake CSnake = new Snake(460, 240, 19, 19);
 				CSnake.down = false;
 
 			}
-			
+
 		} else if (e.getKeyCode() == KeyEvent.VK_A) {
 			// object.x = object.x - 20;
 			// snake1.x = snake1.x - snake1.speed;
