@@ -175,9 +175,9 @@ public class ObjectsManager {
 					food.remove(i);
 					snakes.get(j).size = snakes.get(j).size + 2;
 					foodAmount = foodAmount - 1;
-					if (j == 1) {
+					
 						snakes.get(1).closestFood();
-					}
+					
 				}
 
 			}

@@ -119,7 +119,145 @@ public class Snake extends GameObject {
 	}
 
 	void AI() {
+		
+		if (isMoving == false) {
 
+			if (foodX < this.x) {
+				left = true;
+
+			} else if (foodX > this.x) {
+				right = true;
+
+			}
+}
+		
+		if (right == true) {
+			
+
+			if (foodX < this.x && foodY < this.y) {
+				right = false;
+				up = true;
+				System.out.println("1");
+			} else if (foodX < this.x && foodY == this.y) {
+				right = false;
+				up = true;
+				System.out.println("2");
+			} else if (foodX < this.x && foodY > this.y) {
+				right = false;
+				down = true;
+				System.out.println("3");
+			} else if (foodX > this.x && foodY < this.y) {
+				right = false;
+				up = true;
+				System.out.println("4");
+			} else if (foodX > this.x && foodY == this.y) {
+
+				right = true;
+				System.out.println("5");
+			} else if (foodX > this.x && foodY > this.y) {
+				right = false;
+				down = true;
+				System.out.println("6");
+			} else if (foodX == this.x && foodY < this.y) {
+				right = false;
+				up = true;
+				System.out.println("7");
+			} else if (foodX == this.x && foodY > this.y) {
+				right = false;
+				down = true;
+				System.out.println("8");
+			}
+
+		}
+		if (left == true) {
+			
+			
+			if (foodX < this.x && foodY < this.y) {
+				left = false;
+				up = true;
+				System.out.println("11");
+			} else if (foodX < this.x && foodY == this.y) {
+				System.out.println("12");
+				left = true;
+				
+			} else if (foodX < this.x && foodY > this.y) {
+				left = false;
+				down = true;
+				System.out.println("13");
+			} else if (foodX > this.x && foodY < this.y) {
+				left = false;
+				up = true;
+				System.out.println("14");
+			} else if (foodX > this.x && foodY == this.y) {
+				left = false;
+				up = true;
+				System.out.println("15");
+			} else if (foodX > this.x && foodY > this.y) {
+				left = false;
+				down = true;
+				System.out.println("16");
+			} else if (foodX == this.x && foodY < this.y) {
+				left = false;
+				up = true;
+				System.out.println("17");
+			} else if (foodX == this.x && foodY > this.y) {
+				left = false;
+				down = true;
+				System.out.println("18");
+			}
+
+		}
+		if (up == true) {
+		
+			
+			if (foodX < this.x && foodY > this.y) {
+				up = false;
+				left = true;
+				
+			} else if (foodX > this.x && foodY > this.y) {
+				up = false;
+				right = true;
+				
+			} else if (foodX == this.x && foodY > this.y) {
+				up = false;
+				left = true;
+				
+			} else if (foodX < this.x && foodY == this.y) {
+				up = false;
+				left = true;
+				
+			} else if (foodX > this.x && foodY == this.y) {
+				up = false;
+				right = true;
+
+			}
+		}
+
+		if (down == true) {
+
+			if (foodX < this.x && foodY < this.y) {
+				down = false;
+				left = true;
+
+			} else if (foodX > this.x && foodY < this.y) {
+				down = false;
+				right = true;
+
+			} else if (foodX == this.x && foodY < this.y) {
+				
+				down = false;
+				right = true;
+
+			} else if (foodX < this.x && foodY == this.y) {
+				down = false;
+				left = true;
+
+			} else if (foodX > this.x && foodY == this.y) {
+				down = false;
+				right = true;
+
+			}
+		}
 	}
 
 	void draw(Graphics g) {
