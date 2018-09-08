@@ -16,10 +16,7 @@ public class Snake extends GameObject {
 	boolean down;
 	boolean left;
 	boolean right;
-	boolean downTail;
-	boolean upTail;
-	boolean leftTail;
-	boolean rightTail;
+	
 	boolean isMoving;
 	int size = 0;
 
@@ -46,40 +43,47 @@ public class Snake extends GameObject {
 		}
 
 		if (down == true) {
-			downTail = true;
-			y = y + speed;
+			up = false;
+			right = false;
+			left = false;
 
-			upTail = false;
-			rightTail = false;
-			leftTail = false;
+		
+			y = y + speed;
+			
 			GamePanel.keyPressed = false;
 			GamePanel.pressedKey = false;
 		}
 
 		if (up == true) {
-			upTail = true;
+			down = false;
+			right = false;
+			left = false;
+			
+			
 			y = y - speed;
-			downTail = false;
-			leftTail = false;
-			rightTail = false;
+			
 			GamePanel.keyPressed = false;
 			GamePanel.pressedKey = false;
 		}
 		if (left == true) {
-			leftTail = true;
+			up = false;
+			down = false;
+			right = false;
+			
+			
 			x = x - speed;
-			rightTail = false;
-			upTail = false;
-			downTail = false;
+			
 			GamePanel.keyPressed = false;
 			GamePanel.pressedKey = false;
 		}
 		if (right == true) {
-			rightTail = true;
+			up = false;
+			down = false;
+			left = false;
+			
+			
 			x = x + speed;
-			leftTail = false;
-			upTail = false;
-			downTail = false;
+			
 			GamePanel.keyPressed = false;
 			GamePanel.pressedKey = false;
 		}
@@ -99,9 +103,9 @@ public class Snake extends GameObject {
 	int foodX;
 
 	void closestFood() {
-		//System.out.println("find closest food foodX"+foodX + "foodY " + foodY );
-		foodY = ObjectsManager.food.get(0).x;
-		foodX = ObjectsManager.food.get(0).x;
+		// System.out.println("find closest food foodX"+foodX + "foodY " + foodY );
+		foodY = ObjectsManager.food.get(0).collisionBox.x;
+		foodX = ObjectsManager.food.get(0).collisionBox.y;
 
 		double shortDis = Math.sqrt(Math.pow(foodX - this.x, 2) + Math.pow(foodY - this.y, 2));
 
@@ -111,13 +115,14 @@ public class Snake extends GameObject {
 
 			if (currentDis < shortDis) {
 				shortDis = currentDis;
-				foodX = ObjectsManager.food.get(i).x;
-				foodY = ObjectsManager.food.get(i).y;
+				foodX = ObjectsManager.food.get(i).collisionBox.x;
+				foodY = ObjectsManager.food.get(i).collisionBox.y;
 
 			}
 
 		}
-		//System.out.println("closest food found at: foodX: "+foodX + "foodY: " + foodY );
+		// System.out.println("closest food found at: foodX: "+foodX + "foodY: " + foodY
+		// );
 
 	}
 
@@ -126,7 +131,7 @@ public class Snake extends GameObject {
 		if (isMoving == false) {
 
 			if (foodX > this.x && foodY <= this.y) {
-				right = false;	
+				right = false;
 				up = false;
 				down = false;
 				left = true;
@@ -135,10 +140,10 @@ public class Snake extends GameObject {
 				down = false;
 				left = false;
 				up = true;
-			} else if(foodX > this.x && foodY >= this.y) {
+			} else if (foodX > this.x && foodY >= this.y) {
 				left = false;
 				up = false;
-				down = false; 
+				down = false;
 				right = true;
 			} else if (foodX <= this.x && foodY > this.y) {
 				up = false;
@@ -147,137 +152,133 @@ public class Snake extends GameObject {
 				down = true;
 			}
 		}
+		if (right == true) {
 
-			if (right == true) {
+			if (foodX < this.x && foodY < this.y) {
+				right = false;
+				up = true;
+				System.out.println("go up because Foody < snakeY and x > foodX");
+			} else if (foodX < this.x && foodY == this.y) {
+				right = false;
+				up = true;
+				System.out.println("go up because foodY == y and foodX < x");
+			} else if (foodX < this.x && foodY > this.y) {
+				right = false;
+				down = true;
+				System.out.println("go down because foodY > y and foodX < x");
+			} else if (foodX > this.x && foodY < this.y) {
+				right = false;
+				up = true;
+				System.out.println("4");
+			} else if (foodX > this.x && foodY == this.y) {
 
-				if (foodX < this.x && foodY < this.y) {
-					right = false;
-					up = true;
-					System.out.println("go up because Foody < snakeY and x > foodX");
-				} else if (foodX < this.x && foodY == this.y) {
-					right = false;
-					up = true;
-					System.out.println("go up because foodY == y and foodX < x");
-				} else if (foodX < this.x && foodY > this.y) {
-					right = false;
-					down = true;
-					System.out.println("go down because foodY > y and foodX < x");
-				} else if (foodX > this.x && foodY < this.y) {
-					right = false;
-					up = true;
-					System.out.println("4");
-				} else if (foodX > this.x && foodY == this.y) {
-
-					
-					System.out.println("5");
-				} else if (foodX > this.x && foodY > this.y) {
-					right = false;
-					down = true;
-					System.out.println("6");
-				} else if (foodX == this.x && foodY < this.y) {
-					right = false;
-					up = true;
-					System.out.println("7");
-				} else if (foodX == this.x && foodY > this.y) {
-					right = false;
-					down = true;
-					System.out.println("8");
-				}
-
-			}
-			if (left == true) {
-
-				if (foodX < this.x && foodY < this.y) {
-					left = false;
-					up = true;
-					System.out.println("11");
-				} else if (foodX < this.x && foodY == this.y) {
-					System.out.println("12");
-					
-
-				} else if (foodX < this.x && foodY > this.y) {
-					left = false;
-					down = true;
-					System.out.println("13");
-				} else if (foodX > this.x && foodY < this.y) {
-					left = false;
-					up = true;
-					System.out.println("14");
-				} else if (foodX > this.x && foodY == this.y) {
-					left = false;
-					up = true;
-					System.out.println("Go up because foodX > x and foodY == y");
-		
-				} else if (foodX > this.x && foodY > this.y) {
-					left = false;
-					down = true;
-					System.out.println("16");
-				} else if (foodX == this.x && foodY < this.y) {
-					left = false;
-					up = true;
-					System.out.println("17");
-				} else if (foodX == this.x && foodY > this.y) {
-					left = false;
-					down = true;
-					System.out.println("18");
-				}
-
+				System.out.println("5");
+			} else if (foodX > this.x && foodY > this.y) {
+				right = false;
+				down = true;
+				System.out.println("6");
+			} else if (foodX == this.x && foodY < this.y) {
+				right = false;
+				up = true;
+				System.out.println("7");
+			} else if (foodX == this.x && foodY > this.y) {
+				right = false;
+				down = true;
+				System.out.println("8");
 			}
 
-			if (up == true) {
+		}
+		if (left == true) {
 
-				if (foodX < this.x && foodY > this.y) {
-					up = false;
-					left = true;
-					System.out.println("Up 1");
-				} else if (foodX > this.x && foodY > this.y) {
-					up = false;
-					right = true;
-					System.out.println("Up 2");
-				} else if (foodX == this.x && foodY > this.y) {
-					up = false;
-					left = true;
-					System.out.println("Up 3");
-				} else if (foodX < this.x && foodY == this.y) {
-					up = false;
-					left = true;
-					closestFood();
-					System.out.println("go left because foodX < x and foodY == y");
-				} else if (foodX > this.x && foodY == this.y) {
-					up = false;
-					right = true;
-					closestFood();
-					System.out.println("Go right because foodX > x and foodY == y");
-				}
+			if (foodX < this.x && foodY < this.y) {
+				left = false;
+				up = true;
+				System.out.println("11");
+			} else if (foodX < this.x && foodY == this.y) {
+				System.out.println("12");
+
+			} else if (foodX < this.x && foodY > this.y) {
+				left = false;
+				down = true;
+				System.out.println("13");
+			} else if (foodX > this.x && foodY < this.y) {
+				left = false;
+				up = true;
+				System.out.println("14");
+			} else if (foodX > this.x && foodY == this.y) {
+				left = false;
+				up = true;
+				System.out.println("Go up because foodX > x and foodY == y");
+
+			} else if (foodX > this.x && foodY > this.y) {
+				left = false;
+				down = true;
+				System.out.println("16");
+			} else if (foodX == this.x && foodY < this.y) {
+				left = false;
+				up = true;
+				System.out.println("17");
+			} else if (foodX == this.x && foodY > this.y) {
+				left = false;
+				down = true;
+				System.out.println("18");
 			}
 
-			if (down == true) {
+		}
+		if (up == true) {
 
-				if (foodX < this.x && foodY < this.y) {
-					down = false;
-					left = true;
-					System.out.println("Down 1");
-				} else if (foodX > this.x && foodY < this.y) {
-					down = false;
-					right = true;
-					System.out.println("Down 2");
-				} else if (foodX == this.x && foodY < this.y) {
-
-					down = false;
-					right = true;
-					System.out.println("Down 3");
-				} else if (foodX < this.x && foodY == this.y) {
-					down = false;
-					left = true;
-					System.out.println("Down 4");
-				} else if (foodX > this.x && foodY == this.y) {
-					down = false;
-					right = true;
-					System.out.println("Down 5");
-				}
+			if (foodX < this.x && foodY > this.y) {
+				up = false;
+				left = true;
+				System.out.println("Up 1");
+			} else if (foodX > this.x && foodY > this.y) {
+				up = false;
+				right = true;
+				System.out.println("Up 2");
+			} else if (foodX == this.x && foodY > this.y) {
+				up = false;
+				left = true;
+				System.out.println("Up 3");
+			} else if (foodX < this.x && foodY == this.y) {
+				up = false;
+				left = true;
+				closestFood();
+				System.out.println("go left because foodX < x and foodY == y");
+			} else if (foodX > this.x && foodY == this.y) {
+				up = false;
+				right = true;
+				closestFood();
+				System.out.println("Go right because foodX > x and foodY == y");
 			}
-			
-		System.out.println("end " + foodY + " " + this.y);
+		}
+		if (down == true) {
+
+			if (foodX < this.x && foodY < this.y) {
+				down = false;
+				left = true;
+				System.out.println("Down 1");
+			} else if (foodX > this.x && foodY < this.y) {
+				down = false;
+				right = true;
+				System.out.println("Down 2");
+			} else if (foodX == this.x && foodY < this.y) {
+
+				down = false;
+				right = true;
+				System.out.println("Down 3");
+			} else if (foodX < this.x && foodY == this.y) {
+				down = false;
+				left = true;
+				System.out.println("Down 4");
+			} else if (foodX > this.x && foodY == this.y) {
+				down = false;
+				right = true;
+				System.out.println("Down 5");
+			}
+		}
+		System.out.println("food " + foodY + " " + foodX);
+		System.out.println("Snake " + this.y + " " + this.x);
+
 	}
 
 	void draw(Graphics g) {

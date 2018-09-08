@@ -91,6 +91,7 @@ public class ObjectsManager {
 			foodAmount = foodAmount + 1;
 
 		}
+		snakes.get(1).closestFood();
 		snakes.get(1).AI();
 		checkPosition();
 	}
@@ -121,8 +122,9 @@ public class ObjectsManager {
 				}
 			}
 		}
+}
 
-	}
+	
 
 	void checkCollision() {
 
