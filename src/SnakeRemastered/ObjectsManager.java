@@ -2,10 +2,14 @@ package SnakeRemastered;
 
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class ObjectsManager {
+import javax.swing.JOptionPane;
+
+public class ObjectsManager implements MouseListener{
 
 	ArrayList<Snake> snakes = new ArrayList<Snake>();
 	static ArrayList<Food> food = new ArrayList<Food>();
@@ -60,7 +64,8 @@ public class ObjectsManager {
 		}
 		Font font = new Font("TRUETYPE_FONT", Font.BOLD, 25);
 		g.setFont(font);
-		g.drawString("Score = " + (snakes.get(0).size + 1), 10, 40);
+		g.drawString("Snake 1 = " + (snakes.get(0).size + 1), 10, 40);
+		g.drawString("Snake 2 = " + (snakes.get(1).size + 1), 200, 40);
 	}
 
 	void update() {
@@ -106,11 +111,11 @@ public class ObjectsManager {
 		for (int i = 0; i < snakes.size(); i++) {
 			int xPosition = snakes.get(i).x / 20;
 			int y = snakes.get(i).y / 20;
-			if (xPosition >= 0 && y >= 0) {
-
-				xPos.remove(xPosition);
-				yPos.remove(y);
-			}
+//			if (xPosition >= 0 && y >= 0) {
+//
+//				xPos.remove(xPosition);
+//				yPos.remove(y);
+//			}
 			for (int x = 0; x < snakes.get(i).tail.size(); x++) {
 				if (snakes.get(i).tail.get(x).x / 20 >= 0 && snakes.get(i).tail.get(x).y / 20 >= 0) {
 					if (xPos.contains(snakes.get(i).tail.get(x).x)) {
@@ -129,16 +134,16 @@ public class ObjectsManager {
 	void checkCollision() {
 
 		if (snakes.get(0).collisionBox.intersects(snakes.get(1).collisionBox)) {
-			snakes.get(1).x = 940;
-			snakes.get(1).y = 480;
+			snakes.get(1).x = 460;
+			snakes.get(1).y = 240;
 			snakes.get(1).size = 0;
 			snakes.get(1).up = false;
 			snakes.get(1).down = false;
 			snakes.get(1).right = false;
 			snakes.get(1).left = false;
 
-			snakes.get(0).x = 460;
-			snakes.get(0).y = 240;
+			snakes.get(0).x = 940;
+			snakes.get(0).y = 480;
 			snakes.get(0).size = 0;
 			snakes.get(0).up = false;
 			snakes.get(0).down = false;
@@ -147,8 +152,8 @@ public class ObjectsManager {
 		}
 		for (int i = 0; i < snakes.get(0).tail.size(); i++) {
 			if (snakes.get(1).collisionBox.intersects(snakes.get(0).tail.get(i).collisionBox)) {
-				snakes.get(1).x = 940;
-				snakes.get(1).y = 480;
+				snakes.get(1).x = 460;
+				snakes.get(1).y = 240;
 				snakes.get(1).size = 0;
 				snakes.get(1).up = false;
 				snakes.get(1).down = false;
@@ -167,6 +172,7 @@ public class ObjectsManager {
 				snakes.get(0).right = false;
 				snakes.get(0).left = false;
 			}
+			
 		}
 
 		for (int j = 0; j < snakes.size(); j++) {
@@ -220,6 +226,71 @@ public class ObjectsManager {
 				}
 			}
 		}
+		for(int i = 0; i < snakes.size(); i++) {
+			for(int t = 0; t < snakes.get(i).tail.size(); t++) {
+				for(int s = 0; s < snakes.get(i).tail.size() ; s ++ ) {
+					if(snakes.get(i).tail.get(t) != snakes.get(i).tail.get(s)) {
+						
+						if(snakes.get(i).tail.get(t).collisionBox.intersects(snakes.get(i).tail.get(s).collisionBox)) {
+							
+							if(i == 0) {
+								snakes.get(0).x = 940;
+								snakes.get(0).y = 480;
+								snakes.get(0).size = 0;
+								snakes.get(0).up = false;
+								snakes.get(0).down = false;
+								snakes.get(0).right = false;
+								snakes.get(0).left = false;
+							}else if(i == 1) {
+								snakes.get(1).x = 460;
+								snakes.get(1).y = 240;
+								snakes.get(1).size = 0;
+								snakes.get(1).up = false;
+								snakes.get(1).down = false;
+								snakes.get(1).right = false;
+								snakes.get(1).left = false;
+							}
+							
+							
+						}
+						
+					}
+				}
+				
+				
+			}
+			
+		}
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

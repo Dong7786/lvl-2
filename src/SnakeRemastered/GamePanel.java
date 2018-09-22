@@ -70,7 +70,6 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	GamePanel() {
 
 		timer = new Timer(1000 / 12, this);
-
 	}
 
 	void startGame() {

@@ -104,8 +104,8 @@ public class Snake extends GameObject {
 
 	void closestFood() {
 		// System.out.println("find closest food foodX"+foodX + "foodY " + foodY );
-		foodY = ObjectsManager.food.get(0).collisionBox.x;
-		foodX = ObjectsManager.food.get(0).collisionBox.y;
+		foodY = ObjectsManager.food.get(0).collisionBox.y;
+		foodX = ObjectsManager.food.get(0).collisionBox.x;
 
 		double shortDis = Math.sqrt(Math.pow(foodX - this.x, 2) + Math.pow(foodY - this.y, 2));
 
@@ -150,6 +150,11 @@ public class Snake extends GameObject {
 				right = false;
 				left = false;
 				down = true;
+			}else {
+				left = false;
+				up = false;
+				down = false;
+				right = true;
 			}
 		}
 		if (right == true) {
@@ -290,6 +295,8 @@ public class Snake extends GameObject {
 
 		g.setColor(Color.WHITE);
 		g.fillRect(x, y, width, height);
+		
+		
 
 	}
 
