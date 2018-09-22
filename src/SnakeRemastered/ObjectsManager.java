@@ -16,7 +16,7 @@ public class ObjectsManager implements MouseListener{
 	int foodAmount = 0;
 	int randX;
 	int randY;
-
+int stage = 0;
 	boolean isFood = false;
 	int[][] arr = new int[94][45];
 	ArrayList<Integer> xPos = new ArrayList<Integer>();
@@ -66,6 +66,10 @@ public class ObjectsManager implements MouseListener{
 		g.setFont(font);
 		g.drawString("Snake 1 = " + (snakes.get(0).size + 1), 10, 40);
 		g.drawString("Snake 2 = " + (snakes.get(1).size + 1), 200, 40);
+		if(stage == 0) {
+			
+		}
+			
 	}
 
 	void update() {
