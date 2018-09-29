@@ -19,6 +19,7 @@ public class Snake extends GameObject {
 	
 	boolean isMoving;
 	int size = 0;
+	int color;
 
 	Snake(int x, int y, int width, int height) {
 		super(x, y, width, height);
@@ -292,11 +293,16 @@ public class Snake extends GameObject {
 			tail.get(i).draw(g);
 
 		}
-
-		g.setColor(Color.WHITE);
+if(color == 1) {
+		g.setColor(Color.RED);
+		
+}
+if(color == 2) {
+	g.setColor(Color.BLUE);
+	
+}
+		
 		g.fillRect(x, y, width, height);
-		
-		
 
 	}
 

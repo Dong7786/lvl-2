@@ -1,12 +1,18 @@
 package SnakeRemastered;
 
+import java.awt.BasicStroke;
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Shape;
+import java.awt.Stroke;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.Random;
 
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
 public class ObjectsManager implements MouseListener{
@@ -19,6 +25,8 @@ public class ObjectsManager implements MouseListener{
 int stage = 0;
 	boolean isFood = false;
 	int[][] arr = new int[94][45];
+	int Mode = 0;
+	
 	ArrayList<Integer> xPos = new ArrayList<Integer>();
 	ArrayList<Integer> yPos = new ArrayList<Integer>();
 
@@ -63,15 +71,76 @@ int stage = 0;
 
 		}
 		Font font = new Font("TRUETYPE_FONT", Font.BOLD, 25);
+		snakes.get(0).color = 2;
+		snakes.get(1).color = 1;
 		g.setFont(font);
-		g.drawString("Snake 1 = " + (snakes.get(0).size + 1), 10, 40);
-		g.drawString("Snake 2 = " + (snakes.get(1).size + 1), 200, 40);
-		if(stage == 0) {
+		if(Mode == 0 || Mode == 2 || Mode == 3) {
+			
+			g.drawString("Blue = " + (snakes.get(0).size + 1), 10, 40);
+		
+			g.drawString("Red = " + (snakes.get(1).size + 1), 150, 40);
+			
+		}else if(Mode == 1) {
+			g.drawString("Score = " + (snakes.get(0).size + 1), 10, 40);
 			
 		}
+		start(g);
+		
+		
+		
+		
+		
+		
+			
+		
+		
+	
+		
 			
 	}
-
+	
+	
+	void start(Graphics g) {
+		Font f = new Font("TRUETYPE_FONT", Font.BOLD, 15);
+		if(Mode == 0) {
+			snakes.get(0).AI();
+			snakes.get(1).AI();
+		}else if(Mode == 1) {
+			snakes.remove(1);
+			
+		}else if(Mode == 2) {
+			snakes.get(1).AI();
+			
+		}else if(Mode == 3) {
+			
+			
+		}
+		
+		if(Mode == 0) {
+			g.setFont(f);
+			g.fillRect(710, 320, 480, 280);
+			g.setColor(Color.GRAY);
+			Graphics2D g2 = (Graphics2D) g;
+			g2.setStroke(new BasicStroke(5));
+			g2.drawRect(710, 320, 480, 280);
+			g.setColor(Color.BLACK);
+			
+			g.drawString("SnakeRemastered", 885, 340);
+			g.drawString("Choose your Perfered Game style by pressing the", 735, 380);
+			g.drawString("button below. Original is just OG Snake. Double is to ", 735, 400);
+			g.drawString("play with another person(Red controls are W A S D", 735, 420);
+			g.drawString("Blue controls are the arrow keys). Single is to play", 735, 440);
+			g.drawString("with an AI(Use Arrow keys to control the Blue snake).", 735, 460);
+			
+			
+		}
+		
+		
+		
+		
+		
+	
+	}
 	void update() {
 
 		randX = xPos.get(new Random().nextInt(xPos.size()));
@@ -101,7 +170,7 @@ int stage = 0;
 
 		}
 		snakes.get(1).closestFood();
-		snakes.get(1).AI();
+		snakes.get(1).closestFood();
 		checkPosition();
 	}
 
