@@ -85,17 +85,6 @@ int stage = 0;
 			
 		}
 		start(g);
-		
-		
-		
-		
-		
-		
-			
-		
-		
-	
-		
 			
 	}
 	
@@ -131,7 +120,7 @@ int stage = 0;
 			g.drawString("play with another person(Red controls are W A S D", 735, 420);
 			g.drawString("Blue controls are the arrow keys). Single is to play", 735, 440);
 			g.drawString("with an AI(Use Arrow keys to control the Blue snake).", 735, 460);
-			
+		
 			
 		}
 		
