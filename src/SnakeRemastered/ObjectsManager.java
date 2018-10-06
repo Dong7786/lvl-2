@@ -71,10 +71,15 @@ int stage = 0;
 
 		}
 		Font font = new Font("TRUETYPE_FONT", Font.BOLD, 25);
-		snakes.get(0).color = 2;
-		snakes.get(1).color = 1;
+		
 		g.setFont(font);
-		if(Mode == 0 || Mode == 2 || Mode == 3) {
+		if(Mode == 0) {
+			g.drawString("Score = " + (snakes.get(0).size + 1), 10, 40);
+			
+			g.drawString("Score = " + (snakes.get(1).size + 1), 150, 40);
+			
+		}
+		if( Mode == 2 || Mode == 3) {
 			
 			g.drawString("Blue = " + (snakes.get(0).size + 1), 10, 40);
 		
@@ -95,15 +100,22 @@ int stage = 0;
 			snakes.get(0).AI();
 			snakes.get(1).AI();
 		}else if(Mode == 1) {
-			snakes.remove(1);
+			snakes.get(1).x = 2000;
 			
 		}else if(Mode == 2) {
 			snakes.get(1).AI();
+			snakes.get(0).color = 2;
+			snakes.get(1).color = 1;
+			
 			
 		}else if(Mode == 3) {
+			snakes.get(0).color = 2;
+			snakes.get(1).color = 1;
+			
 			
 			
 		}
+	
 		
 		if(Mode == 0) {
 			g.setFont(f);
@@ -112,14 +124,16 @@ int stage = 0;
 			Graphics2D g2 = (Graphics2D) g;
 			g2.setStroke(new BasicStroke(5));
 			g2.drawRect(710, 320, 480, 280);
-			g.setColor(Color.BLACK);
+			g.setColor(Color.RED);
 			
 			g.drawString("SnakeRemastered", 885, 340);
-			g.drawString("Choose your Perfered Game style by pressing the", 735, 380);
-			g.drawString("button below. Original is just OG Snake. Double is to ", 735, 400);
-			g.drawString("play with another person(Red controls are W A S D", 735, 420);
-			g.drawString("Blue controls are the arrow keys). Single is to play", 735, 440);
-			g.drawString("with an AI(Use Arrow keys to control the Blue snake).", 735, 460);
+			g.drawString("Choose your Perfered Game style:", 735, 380);
+			g.setColor(Color.BLACK);
+			g.drawString("Press 1 for OG Snake", 735, 420);
+			g.drawString("Press 2 For Multiplayer", 735, 460);
+			g.drawString("Controls; Red W A S D, Blue Arrow Keys", 735, 480);
+			g.drawString("Press 3 to play a Bot", 735, 520);
+			g.drawString("You are blue, Controls: Arrow Keys", 735, 540);
 		
 			
 		}
@@ -180,12 +194,13 @@ int stage = 0;
 //			}
 			for (int x = 0; x < snakes.get(i).tail.size(); x++) {
 				if (snakes.get(i).tail.get(x).x / 20 >= 0 && snakes.get(i).tail.get(x).y / 20 >= 0) {
-					if (xPos.contains(snakes.get(i).tail.get(x).x)) {
-						xPos.remove(snakes.get(i).tail.get(x).x / 20);
-					}
-					if (yPos.contains(snakes.get(i).tail.get(x).y)) {
-						yPos.remove(snakes.get(i).tail.get(x).y / 20);
-					}
+					
+//					if (xPos.contains(snakes.get(i).tail.get(x).x)) {
+//						xPos.remove(snakes.get(i).tail.get(x).x / 20);
+//					}
+//					if (yPos.contains(snakes.get(i).tail.get(x).y)) {
+//						yPos.remove(snakes.get(i).tail.get(x).y / 20); 
+//					}
 				}
 			}
 		}

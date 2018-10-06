@@ -52,7 +52,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 
 		}
 
-		if (CSnake.x > 1880) {
+		if (CSnake.x > 1880 && CSnake.x < 2000) {
 			CSnake.x = 0;
 		} else if (CSnake.x < 0) {
 			CSnake.x = 1880;
@@ -96,7 +96,55 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	@Override
 	public void keyPressed(KeyEvent e) {
 		// TODO Auto-generated method stub
+		if(manager.Mode == 0) {
+if(e.getKeyCode() == KeyEvent.VK_1) {
+	manager.Mode = 1;
+	manager.snakes.get(0).x = 940;
+	manager.snakes.get(0).y = 480;
+	manager.snakes.get(0).size = 0;
+	manager.snakes.get(0).up = false;
+	manager.snakes.get(0).down = false;
+	manager.snakes.get(0).right = false;
+	manager.snakes.get(0).left = false;
+}
+if(e.getKeyCode() == KeyEvent.VK_2) {
+	manager.Mode = 2;
+	manager.snakes.get(1).x = 460;
+	manager.snakes.get(1).y = 240;
+	manager.snakes.get(1).size = 0;
+	manager.snakes.get(1).up = false;
+	manager.snakes.get(1).down = false;
+	manager.snakes.get(1).right = false;
+	manager.snakes.get(1).left = false;
 
+	manager.snakes.get(0).x = 940;
+	manager.snakes.get(0).y = 480;
+	manager.snakes.get(0).size = 0;
+	manager.	snakes.get(0).up = false;
+	manager.	snakes.get(0).down = false;
+	manager.	snakes.get(0).right = false;
+	manager.snakes.get(0).left = false;
+}
+if(e.getKeyCode() == KeyEvent.VK_3) {
+	manager.Mode = 3;
+	manager.snakes.get(1).x = 460;
+	manager.snakes.get(1).y = 240;
+	manager.snakes.get(1).size = 0;
+	manager.snakes.get(1).up = false;
+	manager.snakes.get(1).down = false;
+	manager.	snakes.get(1).right = false;
+	manager.	snakes.get(1).left = false;
+
+	manager.	snakes.get(0).x = 940;
+	manager.	snakes.get(0).y = 480;
+	manager.	snakes.get(0).size = 0;
+	manager.	snakes.get(0).up = false;
+	manager.	snakes.get(0).down = false;
+	manager.	snakes.get(0).right = false;
+	manager.	snakes.get(0).left = false;
+}
+	}
+if(manager.Mode != 0) {
 		if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
 			// object.x = object.x + 20;
 			// snake1.x = snake1.x + snake1.speed;
@@ -142,6 +190,8 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 				snake1.down = false;
 			}
 		}
+}
+if(manager.Mode == 3) {
 
 		// -- CSnake
 		if (e.getKeyCode() == KeyEvent.VK_D) {
@@ -189,6 +239,12 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 				CSnake.down = false;
 			}
 		}
+	}
+if(e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+	manager.Mode = 0;
+	
+	
+}
 	}
 
 	public void keyReleased(KeyEvent e) {
