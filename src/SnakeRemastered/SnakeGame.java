@@ -15,6 +15,33 @@ public class SnakeGame {
 	JFrame frame;
 	GamePanel panel;
 
+	
+	
+	
+	
+	
+	
+	/* Use 2D Array to make the AI Smarter
+	 * arr[x][y] = 1 means snake or tail is there
+	 * 
+	 * 
+	 * 
+	 * 
+	 */
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	public static void main(String[] args) {
 		SnakeGame snake = new SnakeGame();
 	}
