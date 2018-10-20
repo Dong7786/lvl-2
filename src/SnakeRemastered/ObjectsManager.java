@@ -24,7 +24,7 @@ public class ObjectsManager{
 	int randY;
 
 	boolean isFood = false;
-	int[][] arr = new int[95][48];
+	int[][] arr = new int[94][48];
 	int Mode = 0;
 	
 	
@@ -33,32 +33,32 @@ public class ObjectsManager{
 		for(int i = 0; i < 48 ; i ++) {
 			arr[0][i] = 1; 
 		}
-		for(int i = 0; i < 95 ; i ++) {
+		for(int i = 0; i < 94 ; i ++) {
 			arr[i][0] = 1; 
 		}
 
-		randX = new Random().nextInt(95);
+		randX = new Random().nextInt(94);
 		randY = new Random().nextInt(48);
 		while(arr[randX][randY] == 1) {
-			randX = new Random().nextInt(95);
+			randX = new Random().nextInt(94);
 			randY = new Random().nextInt(48);
 			
 		}
 		food.add(new Food(randX * 20, randY * 20, 19, 19));
 
-		randX = new Random().nextInt(95);
+		randX = new Random().nextInt(94);
 		randY = new Random().nextInt(48);
 		while(arr[randX][randY] == 1) {
-			randX = new Random().nextInt(95);
+			randX = new Random().nextInt(94);
 			randY = new Random().nextInt(48);
 			
 		}
 		food.add(new Food(randX * 20, randY * 20, 19, 19));
 
-		randX = new Random().nextInt(95);
+		randX = new Random().nextInt(94);
 		randY = new Random().nextInt(48);
 		while(arr[randX][randY] == 1) {
-			randX = new Random().nextInt(95);
+			randX = new Random().nextInt(94);
 			randY = new Random().nextInt(48);
 			
 		}
@@ -151,6 +151,12 @@ public class ObjectsManager{
 			g.drawString("You are blue, Controls: Arrow Keys", 735, 540);
 		
 			
+		}if(Mode == 4) {
+			snakes.get(0).color = 3;
+			snakes.get(1).color = 3;
+			snakes.get(0).AI();
+			snakes.get(1).AI();
+			
 		}
 		
 		
@@ -161,7 +167,7 @@ public class ObjectsManager{
 	}
 	void update() {
 
-		randX = new Random().nextInt(95);
+		randX = new Random().nextInt(94);
 		randY = new Random().nextInt(48);
 
 		for (int i = 0; i < food.size(); i++) {
@@ -184,7 +190,7 @@ public class ObjectsManager{
 
 			
 			while(arr[randX][randY] == 1) {
-				randX = new Random().nextInt(95);
+				randX = new Random().nextInt(94);
 				randY = new Random().nextInt(48);
 				
 			}
@@ -204,14 +210,14 @@ public class ObjectsManager{
 			int xPosition = snakes.get(i).x / 20;
 			int yPosition = snakes.get(i).y / 20;
 			 if(xPosition >= 0 && yPosition >= 0) {
- if(xPosition < 95 && yPosition < 48) {
+ if(xPosition < 94 && yPosition < 48) {
 	 arr[xPosition][yPosition] = 1;
 	 
  }
 			 }
 			for (int x = 0; x < snakes.get(i).tail.size(); x++) {
 				if (snakes.get(i).tail.get(x).x / 20 >= 0 && snakes.get(i).tail.get(x).y / 20 >= 0) {
-					if(snakes.get(i).tail.get(x).x / 20 < 95 && snakes.get(i).tail.get(x).y / 20 < 48) {
+					if(snakes.get(i).tail.get(x).x / 20 < 94 && snakes.get(i).tail.get(x).y / 20 < 48) {
 						arr[snakes.get(i).tail.get(x).x / 20][snakes.get(i).tail.get(x).y / 20] = 1;
 						
 					}
@@ -313,10 +319,10 @@ public class ObjectsManager{
 
 				if (randX * 20 == snakes.get(o).x && randY * 20 == snakes.get(o).y
 						|| randX * 20 == snakes.get(o).tail.get(s).x && randY * 20 == snakes.get(o).tail.get(s).y) {
-					randX = new Random().nextInt(95);
+					randX = new Random().nextInt(94);
 					randY = new Random().nextInt(48);
 					while(arr[randX][randY] == 1) {
-						randX = new Random().nextInt(95);
+						randX = new Random().nextInt(94);
 						randY = new Random().nextInt(48);
 						
 					}

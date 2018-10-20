@@ -143,6 +143,9 @@ if(e.getKeyCode() == KeyEvent.VK_3) {
 	manager.	snakes.get(0).right = false;
 	manager.	snakes.get(0).left = false;
 }
+if(e.getKeyCode() == KeyEvent.VK_0) {
+	manager.Mode = 4;
+}
 	}
 if(manager.Mode != 0) {
 		if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
