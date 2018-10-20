@@ -152,10 +152,12 @@ public class ObjectsManager{
 		
 			
 		}if(Mode == 4) {
-			snakes.get(0).color = 3;
-			snakes.get(1).color = 3;
+			snakes.get(0).color = 1;
+			snakes.get(1).color = 2;
 			snakes.get(0).AI();
 			snakes.get(1).AI();
+			System.out.println("Red Snake X: " + snakes.get(0).x + " Y:" + snakes.get(0).y );
+			System.out.println("Blue Snake X: " + snakes.get(1).x + " Y:" + snakes.get(1).y );
 			
 		}
 		
