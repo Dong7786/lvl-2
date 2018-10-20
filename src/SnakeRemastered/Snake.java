@@ -9,7 +9,7 @@ import java.util.Random;
 public class Snake extends GameObject {
 
 	ArrayList<Tail> tail = new ArrayList<Tail>();
-
+	
 	Random rand = new Random();
 	int speed;
 	boolean up;
@@ -25,7 +25,7 @@ public class Snake extends GameObject {
 		super(x, y, width, height);
 		// TODO Auto-generated constructor
 		speed = 20;
-
+		
 	}
 
 	void update() {
@@ -104,7 +104,7 @@ public class Snake extends GameObject {
 	int foodX;
 
 	void closestFood() {
-		// System.out.println("find closest food foodX"+foodX + "foodY " + foodY );
+		
 		foodY = ObjectsManager.food.get(0).collisionBox.y;
 		foodX = ObjectsManager.food.get(0).collisionBox.x;
 
@@ -122,8 +122,7 @@ public class Snake extends GameObject {
 			}
 
 		}
-		// System.out.println("closest food found at: foodX: "+foodX + "foodY: " + foodY
-		// );
+		
 
 	}
 
@@ -282,8 +281,7 @@ public class Snake extends GameObject {
 				System.out.println("Down 5");
 			}
 		}
-		System.out.println("food " + foodY + " " + foodX);
-		System.out.println("Snake " + this.y + " " + this.x);
+	
 
 	}
 
@@ -300,6 +298,8 @@ if(color == 1) {
 if(color == 2) {
 	g.setColor(Color.BLUE);
 	
+}if(color == 3) {
+	g.setColor(Color.WHITE);
 }
 		
 		g.fillRect(x, y, width, height);

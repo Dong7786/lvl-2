@@ -146,8 +146,7 @@ if(e.getKeyCode() == KeyEvent.VK_3) {
 	}
 if(manager.Mode != 0) {
 		if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-			// object.x = object.x + 20;
-			// snake1.x = snake1.x + snake1.speed;
+
 
 			if ((snake1.left == false || snake1.size == 0) && keyPressed == false) {
 				keyPressed = true;
@@ -159,8 +158,7 @@ if(manager.Mode != 0) {
 			}
 
 		} else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-			// object.x = object.x - 20;
-			// snake1.x = snake1.x - snake1.speed;
+		
 			if ((snake1.right == false || snake1.size == 0) && keyPressed == false) {
 				keyPressed = true;
 				snake1.left = true;
@@ -170,7 +168,7 @@ if(manager.Mode != 0) {
 
 			}
 		} else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-			// object.y = object.y + 20;
+			
 			if ((snake1.up == false || snake1.size == 0) && keyPressed == false) {
 				keyPressed = true;
 				snake1.down = true;
@@ -180,7 +178,7 @@ if(manager.Mode != 0) {
 
 			}
 		} else if (e.getKeyCode() == KeyEvent.VK_UP) {
-			// object.y = object.y - 20;
+			
 			if ((snake1.down == false || snake1.size == 0) && keyPressed == false) {
 				keyPressed = true;
 				snake1.up = true;
@@ -193,10 +191,9 @@ if(manager.Mode != 0) {
 }
 if(manager.Mode == 3) {
 
-		// -- CSnake
+		
 		if (e.getKeyCode() == KeyEvent.VK_D) {
-			// object.x = object.x + 20;
-			// snake1.x = snake1.x + snake1.speed;
+	
 
 			if ((CSnake.left == false || CSnake.size == 0) && pressedKey == false) {
 				pressedKey = true;
@@ -208,8 +205,7 @@ if(manager.Mode == 3) {
 			}
 
 		} else if (e.getKeyCode() == KeyEvent.VK_A) {
-			// object.x = object.x - 20;
-			// snake1.x = snake1.x - snake1.speed;
+			
 			if ((CSnake.right == false || CSnake.size == 0) && pressedKey == false) {
 				pressedKey = true;
 				CSnake.left = true;
@@ -219,7 +215,7 @@ if(manager.Mode == 3) {
 
 			}
 		} else if (e.getKeyCode() == KeyEvent.VK_S) {
-			// object.y = object.y + 20;
+			
 			if ((CSnake.up == false || CSnake.size == 0) && pressedKey == false) {
 				pressedKey = true;
 				CSnake.down = true;
@@ -229,7 +225,7 @@ if(manager.Mode == 3) {
 
 			}
 		} else if (e.getKeyCode() == KeyEvent.VK_W) {
-			// object.y = object.y - 20;
+			
 			if ((CSnake.down == false || CSnake.size == 0) && pressedKey == false) {
 				pressedKey = true;
 				CSnake.up = true;

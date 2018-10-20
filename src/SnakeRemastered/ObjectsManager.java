@@ -15,40 +15,54 @@ import java.util.Random;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
-public class ObjectsManager implements MouseListener{
+public class ObjectsManager{
 
 	ArrayList<Snake> snakes = new ArrayList<Snake>();
 	static ArrayList<Food> food = new ArrayList<Food>();
 	int foodAmount = 0;
 	int randX;
 	int randY;
-int stage = 0;
+
 	boolean isFood = false;
-	int[][] arr = new int[94][45];
+	int[][] arr = new int[95][48];
 	int Mode = 0;
 	
-	ArrayList<Integer> xPos = new ArrayList<Integer>();
-	ArrayList<Integer> yPos = new ArrayList<Integer>();
+	
 
 	ObjectsManager(Snake s, Snake sn) {
-		for (int i = 0; i < 1900; i += 20) {
-			xPos.add(i);
+		for(int i = 0; i < 48 ; i ++) {
+			arr[0][i] = 1; 
 		}
-		for (int i = 0; i < 920; i += 20) {
-			yPos.add(i);
+		for(int i = 0; i < 95 ; i ++) {
+			arr[i][0] = 1; 
 		}
 
-		randX = xPos.get(new Random().nextInt(xPos.size()));
-		randY = yPos.get(new Random().nextInt(yPos.size()));
-		food.add(new Food(randX, randY, 19, 19));
+		randX = new Random().nextInt(95);
+		randY = new Random().nextInt(48);
+		while(arr[randX][randY] == 1) {
+			randX = new Random().nextInt(95);
+			randY = new Random().nextInt(48);
+			
+		}
+		food.add(new Food(randX * 20, randY * 20, 19, 19));
 
-		randX = xPos.get(new Random().nextInt(xPos.size()));
-		randY = yPos.get(new Random().nextInt(yPos.size()));
-		food.add(new Food(randX, randY, 19, 19));
+		randX = new Random().nextInt(95);
+		randY = new Random().nextInt(48);
+		while(arr[randX][randY] == 1) {
+			randX = new Random().nextInt(95);
+			randY = new Random().nextInt(48);
+			
+		}
+		food.add(new Food(randX * 20, randY * 20, 19, 19));
 
-		randX = xPos.get(new Random().nextInt(xPos.size()));
-		randY = yPos.get(new Random().nextInt(yPos.size()));
-		food.add(new Food(randX, randY, 19, 19));
+		randX = new Random().nextInt(95);
+		randY = new Random().nextInt(48);
+		while(arr[randX][randY] == 1) {
+			randX = new Random().nextInt(95);
+			randY = new Random().nextInt(48);
+			
+		}
+		food.add(new Food(randX * 20, randY * 20, 19, 19));
 
 		foodAmount = foodAmount + 3;
 
@@ -56,9 +70,7 @@ int stage = 0;
 		snakes.add(sn);
 
 		snakes.get(1).closestFood();
-		System.out.println(snakes.get(1).foodX);
-		System.out.println(snakes.get(1).foodY);
-		System.out.println(yPos);
+		
 
 	}
 
@@ -97,9 +109,12 @@ int stage = 0;
 	void start(Graphics g) {
 		Font f = new Font("TRUETYPE_FONT", Font.BOLD, 15);
 		if(Mode == 0) {
+			snakes.get(0).color = 3;
+			snakes.get(1).color = 3;
 			snakes.get(0).AI();
 			snakes.get(1).AI();
 		}else if(Mode == 1) {
+			snakes.get(0).color = 3;
 			snakes.get(1).x = 2000;
 			
 		}else if(Mode == 2) {
@@ -146,8 +161,8 @@ int stage = 0;
 	}
 	void update() {
 
-		randX = xPos.get(new Random().nextInt(xPos.size()));
-		randY = yPos.get(new Random().nextInt(yPos.size()));
+		randX = new Random().nextInt(95);
+		randY = new Random().nextInt(48);
 
 		for (int i = 0; i < food.size(); i++) {
 			food.get(i).update();
@@ -167,7 +182,13 @@ int stage = 0;
 
 		if (isFood == false) {
 
-			food.add(new Food(randX, randY, 19, 19));
+			
+			while(arr[randX][randY] == 1) {
+				randX = new Random().nextInt(95);
+				randY = new Random().nextInt(48);
+				
+			}
+			food.add(new Food(randX * 20, randY * 20, 19, 19));
 
 			foodAmount = foodAmount + 1;
 
@@ -178,29 +199,23 @@ int stage = 0;
 	}
 
 	void checkPosition() {
-		for (int i = 0; i < 1900; i += 20) {
-			xPos.add(i);
-		}
-		for (int i = 0; i < 920; i += 20) {
-			yPos.add(i);
-		}
+		
 		for (int i = 0; i < snakes.size(); i++) {
 			int xPosition = snakes.get(i).x / 20;
-			int y = snakes.get(i).y / 20;
-//			if (xPosition >= 0 && y >= 0) {
-//
-//				xPos.remove(xPosition);
-//				yPos.remove(y);
-//			}
+			int yPosition = snakes.get(i).y / 20;
+			 if(xPosition >= 0 && yPosition >= 0) {
+ if(xPosition < 95 && yPosition < 48) {
+	 arr[xPosition][yPosition] = 1;
+	 
+ }
+			 }
 			for (int x = 0; x < snakes.get(i).tail.size(); x++) {
 				if (snakes.get(i).tail.get(x).x / 20 >= 0 && snakes.get(i).tail.get(x).y / 20 >= 0) {
-					
-//					if (xPos.contains(snakes.get(i).tail.get(x).x)) {
-//						xPos.remove(snakes.get(i).tail.get(x).x / 20);
-//					}
-//					if (yPos.contains(snakes.get(i).tail.get(x).y)) {
-//						yPos.remove(snakes.get(i).tail.get(x).y / 20); 
-//					}
+					if(snakes.get(i).tail.get(x).x / 20 < 95 && snakes.get(i).tail.get(x).y / 20 < 48) {
+						arr[snakes.get(i).tail.get(x).x / 20][snakes.get(i).tail.get(x).y / 20] = 1;
+						
+					}
+
 				}
 			}
 		}
@@ -296,10 +311,15 @@ int stage = 0;
 		for (int o = 0; o < snakes.size(); o++) {
 			for (int s = 0; s < snakes.get(o).tail.size(); s++) {
 
-				if (randX == snakes.get(o).x && randY == snakes.get(o).y
-						|| randX == snakes.get(o).tail.get(s).x && randY == snakes.get(o).tail.get(s).y) {
-					randX = xPos.get(new Random().nextInt(xPos.size()));
-					randY = yPos.get(new Random().nextInt(yPos.size()));
+				if (randX * 20 == snakes.get(o).x && randY * 20 == snakes.get(o).y
+						|| randX * 20 == snakes.get(o).tail.get(s).x && randY * 20 == snakes.get(o).tail.get(s).y) {
+					randX = new Random().nextInt(95);
+					randY = new Random().nextInt(48);
+					while(arr[randX][randY] == 1) {
+						randX = new Random().nextInt(95);
+						randY = new Random().nextInt(48);
+						
+					}
 				}
 			}
 		}
@@ -339,35 +359,4 @@ int stage = 0;
 			
 		}
 	}
-
-	@Override
-	public void mouseClicked(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
 }
