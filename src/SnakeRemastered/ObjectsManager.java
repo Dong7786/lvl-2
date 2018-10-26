@@ -24,10 +24,12 @@ public class ObjectsManager{
 	int randY;
 
 	boolean isFood = false;
+	// public static int[][] arr = new int[94][48];
 	int[][] arr = new int[94][48];
 	int Mode = 0;
-	
-	
+	boolean manual = false;
+	boolean mO = false;
+	boolean mC = false;
 
 	ObjectsManager(Snake s, Snake sn) {
 		for(int i = 0; i < 48 ; i ++) {
@@ -85,7 +87,7 @@ public class ObjectsManager{
 		Font font = new Font("TRUETYPE_FONT", Font.BOLD, 25);
 		
 		g.setFont(font);
-		if(Mode == 0) {
+		if(Mode == 0 || Mode == 4) {
 			g.drawString("Score = " + (snakes.get(0).size + 1), 10, 40);
 			
 			g.drawString("Score = " + (snakes.get(1).size + 1), 150, 40);
@@ -145,17 +147,28 @@ public class ObjectsManager{
 			g.drawString("Choose your Perfered Game style:", 735, 380);
 			g.setColor(Color.BLACK);
 			g.drawString("Press 1 for OG Snake", 735, 420);
-			g.drawString("Press 2 For Multiplayer", 735, 460);
-			g.drawString("Controls; Red W A S D, Blue Arrow Keys", 735, 480);
-			g.drawString("Press 3 to play a Bot", 735, 520);
-			g.drawString("You are blue, Controls: Arrow Keys", 735, 540);
+			g.drawString("Press 3 to play a Bot", 735, 460);
+			g.drawString("You are blue, Controls: Arrow Keys", 735, 480);
+			g.drawString("Press 2 For Multiplayer", 735, 520);
+			g.drawString("Controls; Red W A S D, Blue Arrow Keys", 735, 540);
 		
 			
 		}if(Mode == 4) {
 			snakes.get(0).color = 1;
 			snakes.get(1).color = 2;
+			
+			if(manual = false){
 			snakes.get(0).AI();
 			snakes.get(1).AI();
+				//make a message on the top right of the screen to check if manual is on for both snakes
+			}
+			if(mO == false){
+			snakes.get(0).AI();	
+			}
+			if(mC == false){
+			snakes.get(1).AI();	
+			}
+			
 			System.out.println("Red Snake X: " + snakes.get(0).x + " Y:" + snakes.get(0).y );
 			System.out.println("Blue Snake X: " + snakes.get(1).x + " Y:" + snakes.get(1).y );
 			
