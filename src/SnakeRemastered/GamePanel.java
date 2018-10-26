@@ -120,9 +120,9 @@ if(e.getKeyCode() == KeyEvent.VK_2) {
 	manager.snakes.get(0).x = 940;
 	manager.snakes.get(0).y = 480;
 	manager.snakes.get(0).size = 0;
-	manager.	snakes.get(0).up = false;
-	manager.	snakes.get(0).down = false;
-	manager.	snakes.get(0).right = false;
+	manager.snakes.get(0).up = false;
+	manager.snakes.get(0).down = false;
+	manager.snakes.get(0).right = false;
 	manager.snakes.get(0).left = false;
 }
 if(e.getKeyCode() == KeyEvent.VK_3) {
@@ -132,19 +132,22 @@ if(e.getKeyCode() == KeyEvent.VK_3) {
 	manager.snakes.get(1).size = 0;
 	manager.snakes.get(1).up = false;
 	manager.snakes.get(1).down = false;
-	manager.	snakes.get(1).right = false;
-	manager.	snakes.get(1).left = false;
+	manager.snakes.get(1).right = false;
+	manager.snakes.get(1).left = false;
 
-	manager.	snakes.get(0).x = 940;
-	manager.	snakes.get(0).y = 480;
-	manager.	snakes.get(0).size = 0;
-	manager.	snakes.get(0).up = false;
-	manager.	snakes.get(0).down = false;
-	manager.	snakes.get(0).right = false;
-	manager.	snakes.get(0).left = false;
+	manager.snakes.get(0).x = 940;
+	manager.snakes.get(0).y = 480;
+	manager.snakes.get(0).size = 0;
+	manager.snakes.get(0).up = false;
+	manager.snakes.get(0).down = false;
+	manager.snakes.get(0).right = false;
+	manager.snakes.get(0).left = false;
 }
 if(e.getKeyCode() == KeyEvent.VK_0) {
 	manager.Mode = 4;
+	
+	
+	
 }
 	}
 if(manager.Mode != 0) {
@@ -239,6 +242,107 @@ if(manager.Mode == 3) {
 			}
 		}
 	}
+		if(Mode == 4){
+			if(e.getKeyCode() == KeyEvent.VK_M){
+			manager.manual = false;	
+				
+			}
+			if (e.getKeyCode() == KeyEvent.VK_D) {
+	manager.manual = true;
+				manager.mC = true;
+
+			if ((CSnake.left == false || CSnake.size == 0) && pressedKey == false) {
+				pressedKey = true;
+				CSnake.right = true;
+				CSnake.left = false;
+				CSnake.up = false;
+				CSnake.down = false;
+
+			}
+
+		} else if (e.getKeyCode() == KeyEvent.VK_A) {
+			manager.manual = true;
+				manager.mC = true;
+			if ((CSnake.right == false || CSnake.size == 0) && pressedKey == false) {
+				pressedKey = true;
+				CSnake.left = true;
+				CSnake.right = false;
+				CSnake.up = false;
+				CSnake.down = false;
+
+			}
+		} else if (e.getKeyCode() == KeyEvent.VK_S) {
+			manager.manual = true;
+				manager.mC = true;
+			if ((CSnake.up == false || CSnake.size == 0) && pressedKey == false) {
+				pressedKey = true;
+				CSnake.down = true;
+				CSnake.right = false;
+				CSnake.left = false;
+				CSnake.up = false;
+
+			}
+		} else if (e.getKeyCode() == KeyEvent.VK_W) {
+			manager.manual = true;
+				manager.mC = true;
+			if ((CSnake.down == false || CSnake.size == 0) && pressedKey == false) {
+				pressedKey = true;
+				CSnake.up = true;
+				CSnake.right = false;
+				CSnake.left = false;
+
+				CSnake.down = false;
+			}
+		}
+			if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+manager.manual = true;
+manager.mO = true;
+			if ((snake1.left == false || snake1.size == 0) && keyPressed == false) {
+				keyPressed = true;
+				snake1.right = true;
+				snake1.left = false;
+				snake1.up = false;
+				snake1.down = false;
+
+			}
+
+		} else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+		manager.manual = true;
+				manager.mO = true;
+
+			if ((snake1.right == false || snake1.size == 0) && keyPressed == false) {
+				keyPressed = true;
+				snake1.left = true;
+				snake1.right = false;
+				snake1.up = false;
+				snake1.down = false;
+
+			}
+		} else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+			manager.manual = true;
+				manager.mO = true;
+
+			if ((snake1.up == false || snake1.size == 0) && keyPressed == false) {
+				keyPressed = true;
+				snake1.down = true;
+				snake1.right = false;
+				snake1.left = false;
+				snake1.up = false;
+
+			}
+		} else if (e.getKeyCode() == KeyEvent.VK_UP) {
+			manager.manual = true;
+				manager.mO = true;
+			if ((snake1.down == false || snake1.size == 0) && keyPressed == false) {
+				keyPressed = true;
+				snake1.up = true;
+				snake1.right = false;
+				snake1.left = false;
+
+				snake1.down = false;
+			}
+		}
+		}
 if(e.getKeyCode() == KeyEvent.VK_ESCAPE) {
 	manager.Mode = 0;
 	
