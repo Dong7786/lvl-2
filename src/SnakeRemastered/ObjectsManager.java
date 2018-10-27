@@ -24,15 +24,15 @@ public class ObjectsManager{
 	int randY;
 
 	boolean isFood = false;
-	// public static int[][] arr = new int[94][48];
-	int[][] arr = new int[94][48];
+	// public static int[][] arr = new int[94][47];
+	public static int[][] arr = new int[94][47];
 	int Mode = 0;
 	boolean manual = false;
 	boolean mO = false;
 	boolean mC = false;
 
 	ObjectsManager(Snake s, Snake sn) {
-		for(int i = 0; i < 48 ; i ++) {
+		for(int i = 0; i < 47 ; i ++) {
 			arr[0][i] = 1; 
 		}
 		for(int i = 0; i < 94 ; i ++) {
@@ -40,28 +40,28 @@ public class ObjectsManager{
 		}
 
 		randX = new Random().nextInt(94);
-		randY = new Random().nextInt(48);
+		randY = new Random().nextInt(47);
 		while(arr[randX][randY] == 1) {
 			randX = new Random().nextInt(94);
-			randY = new Random().nextInt(48);
+			randY = new Random().nextInt(47);
 			
 		}
 		food.add(new Food(randX * 20, randY * 20, 19, 19));
 
 		randX = new Random().nextInt(94);
-		randY = new Random().nextInt(48);
+		randY = new Random().nextInt(47);
 		while(arr[randX][randY] == 1) {
 			randX = new Random().nextInt(94);
-			randY = new Random().nextInt(48);
+			randY = new Random().nextInt(47);
 			
 		}
 		food.add(new Food(randX * 20, randY * 20, 19, 19));
 
 		randX = new Random().nextInt(94);
-		randY = new Random().nextInt(48);
+		randY = new Random().nextInt(47);
 		while(arr[randX][randY] == 1) {
 			randX = new Random().nextInt(94);
-			randY = new Random().nextInt(48);
+			randY = new Random().nextInt(47);
 			
 		}
 		food.add(new Food(randX * 20, randY * 20, 19, 19));
@@ -87,13 +87,13 @@ public class ObjectsManager{
 		Font font = new Font("TRUETYPE_FONT", Font.BOLD, 25);
 		
 		g.setFont(font);
-		if(Mode == 0 || Mode == 4) {
+		if(Mode == 0) {
 			g.drawString("Score = " + (snakes.get(0).size + 1), 10, 40);
 			
 			g.drawString("Score = " + (snakes.get(1).size + 1), 150, 40);
 			
 		}
-		if( Mode == 2 || Mode == 3) {
+		if( Mode == 2 || Mode == 3 || Mode == 4) {
 			
 			g.drawString("Blue = " + (snakes.get(0).size + 1), 10, 40);
 		
@@ -147,15 +147,15 @@ public class ObjectsManager{
 			g.drawString("Choose your Perfered Game style:", 735, 380);
 			g.setColor(Color.BLACK);
 			g.drawString("Press 1 for OG Snake", 735, 420);
-			g.drawString("Press 3 to play a Bot", 735, 460);
+			g.drawString("Press 2 to play a Bot", 735, 460);
 			g.drawString("You are blue, Controls: Arrow Keys", 735, 480);
-			g.drawString("Press 2 For Multiplayer", 735, 520);
+			g.drawString("Press 3 For Multiplayer", 735, 520);
 			g.drawString("Controls; Red W A S D, Blue Arrow Keys", 735, 540);
 		
 			
 		}if(Mode == 4) {
-			snakes.get(0).color = 1;
-			snakes.get(1).color = 2;
+			snakes.get(0).color = 2;
+			snakes.get(1).color = 1;
 			
 			if(manual = false){
 			snakes.get(0).AI();
@@ -183,7 +183,7 @@ public class ObjectsManager{
 	void update() {
 
 		randX = new Random().nextInt(94);
-		randY = new Random().nextInt(48);
+		randY = new Random().nextInt(47);
 
 		for (int i = 0; i < food.size(); i++) {
 			food.get(i).update();
@@ -206,7 +206,7 @@ public class ObjectsManager{
 			
 			while(arr[randX][randY] == 1) {
 				randX = new Random().nextInt(94);
-				randY = new Random().nextInt(48);
+				randY = new Random().nextInt(47);
 				
 			}
 			food.add(new Food(randX * 20, randY * 20, 19, 19));
@@ -225,14 +225,14 @@ public class ObjectsManager{
 			int xPosition = snakes.get(i).x / 20;
 			int yPosition = snakes.get(i).y / 20;
 			 if(xPosition >= 0 && yPosition >= 0) {
- if(xPosition < 94 && yPosition < 48) {
+ if(xPosition < 94 && yPosition < 47) {
 	 arr[xPosition][yPosition] = 1;
 	 
  }
 			 }
 			for (int x = 0; x < snakes.get(i).tail.size(); x++) {
 				if (snakes.get(i).tail.get(x).x / 20 >= 0 && snakes.get(i).tail.get(x).y / 20 >= 0) {
-					if(snakes.get(i).tail.get(x).x / 20 < 94 && snakes.get(i).tail.get(x).y / 20 < 48) {
+					if(snakes.get(i).tail.get(x).x / 20 < 94 && snakes.get(i).tail.get(x).y / 20 < 47) {
 						arr[snakes.get(i).tail.get(x).x / 20][snakes.get(i).tail.get(x).y / 20] = 1;
 						
 					}
@@ -335,10 +335,10 @@ public class ObjectsManager{
 				if (randX * 20 == snakes.get(o).x && randY * 20 == snakes.get(o).y
 						|| randX * 20 == snakes.get(o).tail.get(s).x && randY * 20 == snakes.get(o).tail.get(s).y) {
 					randX = new Random().nextInt(94);
-					randY = new Random().nextInt(48);
+					randY = new Random().nextInt(47);
 					while(arr[randX][randY] == 1) {
 						randX = new Random().nextInt(94);
-						randY = new Random().nextInt(48);
+						randY = new Random().nextInt(47);
 						
 					}
 				}

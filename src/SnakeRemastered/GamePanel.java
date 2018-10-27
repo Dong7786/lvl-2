@@ -242,10 +242,11 @@ if(manager.Mode == 3) {
 			}
 		}
 	}
-		if(Mode == 4){
+		if(manager.Mode == 4){
 			if(e.getKeyCode() == KeyEvent.VK_M){
 			manager.manual = false;	
-				
+				manager.mC = false;
+				manager.mO = false;
 			}
 			if (e.getKeyCode() == KeyEvent.VK_D) {
 	manager.manual = true;

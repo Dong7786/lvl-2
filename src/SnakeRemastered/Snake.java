@@ -20,7 +20,7 @@ public class Snake extends GameObject {
 	boolean isMoving;
 	int size = 0;
 	int color;
-
+   
 	Snake(int x, int y, int width, int height) {
 		super(x, y, width, height);
 		// TODO Auto-generated constructor
@@ -162,8 +162,19 @@ public class Snake extends GameObject {
 		// --- 
 		
 		
-		if (right == true) {
-
+		if (right == true && GamePanel.keyPressed == false && GamePanel.pressedKey == false) {
+//			if(x / 20 > 0 && x / 20 + 2 < 94 && y / 20 > 0 && y / 20 + 2 < 47 ) {
+//				if(ObjectsManager.arr[x/20 + 2][y/20] == 1 || ObjectsManager.arr[x/20 + 1][y/20] == 1) {
+//					if(ObjectsManager.arr[x/20][y/20 + 2] != 1 || ObjectsManager.arr[x/20][y/20 + 1] != 1) {
+//						down = true;
+//						
+//					}else {
+//						up = true;
+//						
+//					}
+//					
+//				}
+//						}
 			if (foodX < this.x && foodY < this.y) {
 				right = false;
 				up = true;
@@ -196,13 +207,24 @@ public class Snake extends GameObject {
 				down = true;
 			
 			}
-
+			
 		}
 		
 		// --- 
 		 
-		if (left == true) {
-
+		if (left == true && GamePanel.keyPressed == false && GamePanel.pressedKey == false) {
+//			if(x / 20 - 2> 0&& x / 20 < 94 && y / 20 > 0 && y / 20 + 2 < 47) {
+//				if(ObjectsManager.arr[x/20 - 2][y/20] == 1 || ObjectsManager.arr[x/20 - 1][y/20] == 1) {
+//					if(ObjectsManager.arr[x/20][y/20 + 2] != 1 || ObjectsManager.arr[x/20][y/20 + 1] != 1) {
+//						down = true;
+//						
+//					}else {
+//						up = true;
+//						
+//					}
+//					
+//				}
+//			}
 			if (foodX < this.x && foodY < this.y) {
 				left = false;
 				up = true;
@@ -236,13 +258,24 @@ public class Snake extends GameObject {
 				down = true;
 				
 			}
-
+			
 		}
 		
 		// --- 
 		
-		if (up == true) {
-
+		if (up == true && GamePanel.keyPressed == false && GamePanel.pressedKey == false) {
+//			if(x / 20 > 0 && x / 20 + 2 < 94 && y / 20 - 2 > 0 && y / 20 < 47) {
+//				if(ObjectsManager.arr[x/20][y/20 - 2] == 1 || ObjectsManager.arr[x/20][y/20 - 1] == 1) {
+//					if(ObjectsManager.arr[x/20 + 2][y/20] != 1 || ObjectsManager.arr[x/20 + 1][y/20] != 1) {
+//						right = true;
+//						
+//					}else {
+//						left = true;
+//						
+//					}
+//					
+//				}
+//			}
 			if (foodX < this.x && foodY > this.y) {
 				up = false;
 				left = true;
@@ -262,13 +295,15 @@ public class Snake extends GameObject {
 				right = true;
 				closestFood();
 			}
+			
 		}
 		
 		// --- 
 		
-		if (down == true) {
+		if (down == true && GamePanel.keyPressed == false && GamePanel.pressedKey == false) {
 
 			if (foodX < this.x && foodY < this.y) {
+				
 				down = false;
 				left = true;
 			} else if (foodX > this.x && foodY < this.y) {
@@ -285,8 +320,18 @@ public class Snake extends GameObject {
 				down = false;
 				right = true;
 			}
+//			if(x / 20 > 0 && x / 20 + 2 < 94 && y / 20 > 0 && y / 20 + 2 < 47) {
+//			if(ObjectsManager.arr[x/20][y/20 + 2] == 1 || ObjectsManager.arr[x/20][y/20 + 1] == 1) {
+//				if(ObjectsManager.arr[x/20 + 2][y/20] != 1 || ObjectsManager.arr[x/20 + 1][y/20] != 1) {
+//					right = true;
+//					
+//				}else {
+//					left = true;
+//					
+//				}
+//		}
+//		}
 		}
-	
 
 	}
 
