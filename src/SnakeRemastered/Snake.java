@@ -9,23 +9,24 @@ import java.util.Random;
 public class Snake extends GameObject {
 
 	ArrayList<Tail> tail = new ArrayList<Tail>();
-	
+
 	Random rand = new Random();
 	int speed;
 	boolean up;
 	boolean down;
 	boolean left;
 	boolean right;
-	
+	int Xplace;
+	int Yplace;
 	boolean isMoving;
 	int size = 0;
 	int color;
-   
+
 	Snake(int x, int y, int width, int height) {
 		super(x, y, width, height);
 		// TODO Auto-generated constructor
 		speed = 20;
-		
+
 	}
 
 	void update() {
@@ -43,48 +44,44 @@ public class Snake extends GameObject {
 			tail.remove(0);
 		}
 
-		if (down == true) {
+		if (down == true && up == false) {
 			up = false;
 			right = false;
 			left = false;
 
-		
 			y = y + speed;
-			
+
 			GamePanel.keyPressed = false;
 			GamePanel.pressedKey = false;
 		}
 
-		if (up == true) {
+		if (up == true && down == false) {
 			down = false;
 			right = false;
 			left = false;
-			
-			
+
 			y = y - speed;
-			
+
 			GamePanel.keyPressed = false;
 			GamePanel.pressedKey = false;
 		}
-		if (left == true) {
+		if (left == true && right == false) {
 			up = false;
 			down = false;
 			right = false;
-			
-			
+
 			x = x - speed;
-			
+
 			GamePanel.keyPressed = false;
 			GamePanel.pressedKey = false;
 		}
-		if (right == true) {
+		if (right == true && left == false) {
 			up = false;
 			down = false;
 			left = false;
-			
-			
+
 			x = x + speed;
-			
+
 			GamePanel.keyPressed = false;
 			GamePanel.pressedKey = false;
 		}
@@ -104,7 +101,7 @@ public class Snake extends GameObject {
 	int foodX;
 
 	void closestFood() {
-		
+
 		foodY = ObjectsManager.food.get(0).collisionBox.y;
 		foodX = ObjectsManager.food.get(0).collisionBox.x;
 
@@ -122,12 +119,11 @@ public class Snake extends GameObject {
 			}
 
 		}
-		
 
 	}
 
 	void AI() {
-
+		closestFood();
 		if (isMoving == false) {
 
 			if (foodX > this.x && foodY <= this.y) {
@@ -150,136 +146,138 @@ public class Snake extends GameObject {
 				right = false;
 				left = false;
 				down = true;
-			}else {
+			} else {
 				left = false;
 				up = false;
 				down = false;
 				right = true;
 			}
 		}
-		
-		
-		// --- 
-		
-		
-		if (right == true && GamePanel.keyPressed == false && GamePanel.pressedKey == false) {
-//			if(x / 20 > 0 && x / 20 + 2 < 94 && y / 20 > 0 && y / 20 + 2 < 47 ) {
-//				if(ObjectsManager.arr[x/20 + 2][y/20] == 1 || ObjectsManager.arr[x/20 + 1][y/20] == 1) {
-//					if(ObjectsManager.arr[x/20][y/20 + 2] != 1 || ObjectsManager.arr[x/20][y/20 + 1] != 1) {
-//						down = true;
-//						
-//					}else {
-//						up = true;
-//						
-//					}
-//					
-//				}
-//						}
+
+		// ---
+
+		if (right == true && left == false) {
+
+			// if(x / 20 > 0 && x / 20 + 2 < 94 && y / 20 > 0 && y / 20 + 2 < 47 ) {
+			// if(ObjectsManager.arr[x/20 + 2][y/20] == 1 || ObjectsManager.arr[x/20 +
+			// 1][y/20] == 1) {
+			// if(ObjectsManager.arr[x/20][y/20 + 2] != 1 || ObjectsManager.arr[x/20][y/20 +
+			// 1] != 1) {
+			// down = true;
+			//
+			// }else {
+			// up = true;
+			//
+			// }
+			//
+			// }
+			// }
 			if (foodX < this.x && foodY < this.y) {
 				right = false;
 				up = true;
-			
+
 			} else if (foodX < this.x && foodY == this.y) {
 				right = false;
 				up = true;
-			
+
 			} else if (foodX < this.x && foodY > this.y) {
 				right = false;
 				down = true;
-				
+
 			} else if (foodX > this.x && foodY < this.y) {
 				right = false;
 				up = true;
-		
+
 			} else if (foodX > this.x && foodY == this.y) {
 
-		
 			} else if (foodX > this.x && foodY > this.y) {
 				right = false;
 				down = true;
-			
+
 			} else if (foodX == this.x && foodY < this.y) {
 				right = false;
 				up = true;
-				
+
 			} else if (foodX == this.x && foodY > this.y) {
 				right = false;
 				down = true;
-			
+
 			}
-			
+
 		}
-		
-		// --- 
-		 
-		if (left == true && GamePanel.keyPressed == false && GamePanel.pressedKey == false) {
-//			if(x / 20 - 2> 0&& x / 20 < 94 && y / 20 > 0 && y / 20 + 2 < 47) {
-//				if(ObjectsManager.arr[x/20 - 2][y/20] == 1 || ObjectsManager.arr[x/20 - 1][y/20] == 1) {
-//					if(ObjectsManager.arr[x/20][y/20 + 2] != 1 || ObjectsManager.arr[x/20][y/20 + 1] != 1) {
-//						down = true;
-//						
-//					}else {
-//						up = true;
-//						
-//					}
-//					
-//				}
-//			}
+
+		// ---
+
+		if (left == true && right == false) {
+			// if(x / 20 - 2> 0&& x / 20 < 94 && y / 20 > 0 && y / 20 + 2 < 47) {
+			// if(ObjectsManager.arr[x/20 - 2][y/20] == 1 || ObjectsManager.arr[x/20 -
+			// 1][y/20] == 1) {
+			// if(ObjectsManager.arr[x/20][y/20 + 2] != 1 || ObjectsManager.arr[x/20][y/20 +
+			// 1] != 1) {
+			// down = true;
+			//
+			// }else {
+			// up = true;
+			//
+			// }
+			//
+			// }
+			// }
 			if (foodX < this.x && foodY < this.y) {
 				left = false;
 				up = true;
-			
+
 			} else if (foodX < this.x && foodY == this.y) {
-			
 
 			} else if (foodX < this.x && foodY > this.y) {
 				left = false;
 				down = true;
-			
+
 			} else if (foodX > this.x && foodY < this.y) {
 				left = false;
 				up = true;
-			
+
 			} else if (foodX > this.x && foodY == this.y) {
 				left = false;
 				up = true;
-			
 
 			} else if (foodX > this.x && foodY > this.y) {
 				left = false;
 				down = true;
-				
+
 			} else if (foodX == this.x && foodY < this.y) {
 				left = false;
 				up = true;
-				
+
 			} else if (foodX == this.x && foodY > this.y) {
 				left = false;
 				down = true;
-				
+
 			}
-			
+
 		}
-		
-		// --- 
-		
-		if (up == true && GamePanel.keyPressed == false && GamePanel.pressedKey == false) {
-//			if(x / 20 > 0 && x / 20 + 2 < 94 && y / 20 - 2 > 0 && y / 20 < 47) {
-//				if(ObjectsManager.arr[x/20][y/20 - 2] == 1 || ObjectsManager.arr[x/20][y/20 - 1] == 1) {
-//					if(ObjectsManager.arr[x/20 + 2][y/20] != 1 || ObjectsManager.arr[x/20 + 1][y/20] != 1) {
-//						right = true;
-//						
-//					}else {
-//						left = true;
-//						
-//					}
-//					
-//				}
-//			}
+
+		// ---
+
+		if (up == true && down == false) {
+			// if(x / 20 > 0 && x / 20 + 2 < 94 && y / 20 - 2 > 0 && y / 20 < 47) {
+			// if(ObjectsManager.arr[x/20][y/20 - 2] == 1 || ObjectsManager.arr[x/20][y/20 -
+			// 1] == 1) {
+			// if(ObjectsManager.arr[x/20 + 2][y/20] != 1 || ObjectsManager.arr[x/20 +
+			// 1][y/20] != 1) {
+			// right = true;
+			//
+			// }else {
+			// left = true;
+			//
+			// }
+			//
+			// }
+			// }
 			if (foodX < this.x && foodY > this.y) {
 				up = false;
 				left = true;
-		
+
 			} else if (foodX > this.x && foodY > this.y) {
 				up = false;
 				right = true;
@@ -295,15 +293,15 @@ public class Snake extends GameObject {
 				right = true;
 				closestFood();
 			}
-			
+
 		}
-		
-		// --- 
-		
-		if (down == true && GamePanel.keyPressed == false && GamePanel.pressedKey == false) {
+
+		// ---
+
+		if (down == true && up == false) {
 
 			if (foodX < this.x && foodY < this.y) {
-				
+
 				down = false;
 				left = true;
 			} else if (foodX > this.x && foodY < this.y) {
@@ -320,17 +318,19 @@ public class Snake extends GameObject {
 				down = false;
 				right = true;
 			}
-//			if(x / 20 > 0 && x / 20 + 2 < 94 && y / 20 > 0 && y / 20 + 2 < 47) {
-//			if(ObjectsManager.arr[x/20][y/20 + 2] == 1 || ObjectsManager.arr[x/20][y/20 + 1] == 1) {
-//				if(ObjectsManager.arr[x/20 + 2][y/20] != 1 || ObjectsManager.arr[x/20 + 1][y/20] != 1) {
-//					right = true;
-//					
-//				}else {
-//					left = true;
-//					
-//				}
-//		}
-//		}
+			// if(x / 20 > 0 && x / 20 + 2 < 94 && y / 20 > 0 && y / 20 + 2 < 47) {
+			// if(ObjectsManager.arr[x/20][y/20 + 2] == 1 || ObjectsManager.arr[x/20][y/20 +
+			// 1] == 1) {
+			// if(ObjectsManager.arr[x/20 + 2][y/20] != 1 || ObjectsManager.arr[x/20 +
+			// 1][y/20] != 1) {
+			// right = true;
+			//
+			// }else {
+			// left = true;
+			//
+			// }
+			// }
+			// }
 		}
 
 	}
@@ -341,17 +341,18 @@ public class Snake extends GameObject {
 			tail.get(i).draw(g);
 
 		}
-if(color == 1) {
-		g.setColor(Color.RED);
-		
-}
-if(color == 2) {
-	g.setColor(Color.BLUE);
-	
-}if(color == 3) {
-	g.setColor(Color.WHITE);
-}
-		
+		if (color == 1) {
+			g.setColor(Color.RED);
+
+		}
+		if (color == 2) {
+			g.setColor(Color.BLUE);
+
+		}
+		if (color == 3) {
+			g.setColor(Color.WHITE);
+		}
+
 		g.fillRect(x, y, width, height);
 
 	}
