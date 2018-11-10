@@ -21,7 +21,7 @@ public class Snake extends GameObject {
 	boolean isMoving;
 	int size = 0;
 	int color;
-
+	boolean isAI = false;
 	Snake(int x, int y, int width, int height) {
 		super(x, y, width, height);
 		// TODO Auto-generated constructor
@@ -30,7 +30,9 @@ public class Snake extends GameObject {
 	}
 
 	void update() {
-
+if(isAI  == true) {
+	AI();
+}
 		collisionBox.setBounds(x, y, width, height);
 
 		super.update();
@@ -156,7 +158,7 @@ public class Snake extends GameObject {
 
 		// ---
 
-		if (right == true && left == false) {
+		else if (right == true && left == false) {
 
 			// if(x / 20 > 0 && x / 20 + 2 < 94 && y / 20 > 0 && y / 20 + 2 < 47 ) {
 			// if(ObjectsManager.arr[x/20 + 2][y/20] == 1 || ObjectsManager.arr[x/20 +
@@ -208,7 +210,7 @@ public class Snake extends GameObject {
 
 		// ---
 
-		if (left == true && right == false) {
+		else if (left == true && right == false) {
 			// if(x / 20 - 2> 0&& x / 20 < 94 && y / 20 > 0 && y / 20 + 2 < 47) {
 			// if(ObjectsManager.arr[x/20 - 2][y/20] == 1 || ObjectsManager.arr[x/20 -
 			// 1][y/20] == 1) {
@@ -259,7 +261,7 @@ public class Snake extends GameObject {
 
 		// ---
 
-		if (up == true && down == false) {
+		else if (up == true && down == false) {
 			// if(x / 20 > 0 && x / 20 + 2 < 94 && y / 20 - 2 > 0 && y / 20 < 47) {
 			// if(ObjectsManager.arr[x/20][y/20 - 2] == 1 || ObjectsManager.arr[x/20][y/20 -
 			// 1] == 1) {
@@ -287,18 +289,18 @@ public class Snake extends GameObject {
 			} else if (foodX < this.x && foodY == this.y) {
 				up = false;
 				left = true;
-				closestFood();
+
 			} else if (foodX > this.x && foodY == this.y) {
 				up = false;
 				right = true;
-				closestFood();
+
 			}
 
 		}
 
 		// ---
 
-		if (down == true && up == false) {
+		else if (down == true && up == false) {
 
 			if (foodX < this.x && foodY < this.y) {
 

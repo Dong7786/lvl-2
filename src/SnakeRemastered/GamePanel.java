@@ -97,7 +97,11 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	public void keyPressed(KeyEvent e) {
 		// TODO Auto-generated method stub
 		if(manager.Mode == 0) {
+			manager.snakes.get(0).isAI = true;
+			manager.snakes.get(1).isAI = true;
 if(e.getKeyCode() == KeyEvent.VK_1) {
+	manager.snakes.get(0).isAI = false;
+	manager.snakes.get(1).isAI = false;
 	manager.Mode = 1;
 	manager.snakes.get(0).x = 940;
 	manager.snakes.get(0).y = 480;
@@ -108,6 +112,8 @@ if(e.getKeyCode() == KeyEvent.VK_1) {
 	manager.snakes.get(0).left = false;
 }
 if(e.getKeyCode() == KeyEvent.VK_2) {
+	manager.snakes.get(0).isAI = false;
+	manager.snakes.get(1).isAI = true;
 	manager.Mode = 2;
 	manager.snakes.get(1).x = 460;
 	manager.snakes.get(1).y = 240;
@@ -126,6 +132,8 @@ if(e.getKeyCode() == KeyEvent.VK_2) {
 	manager.snakes.get(0).left = false;
 }
 if(e.getKeyCode() == KeyEvent.VK_3) {
+	manager.snakes.get(0).isAI = false;
+	manager.snakes.get(1).isAI = false;
 	manager.Mode = 3;
 	manager.snakes.get(1).x = 460;
 	manager.snakes.get(1).y = 240;
@@ -145,7 +153,8 @@ if(e.getKeyCode() == KeyEvent.VK_3) {
 }
 if(e.getKeyCode() == KeyEvent.VK_0) {
 	manager.Mode = 4;
-	
+	manager.snakes.get(0).isAI = true;
+	manager.snakes.get(1).isAI = true;
 	
 	
 }

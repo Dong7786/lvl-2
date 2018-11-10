@@ -104,14 +104,14 @@ public class ObjectsManager {
 		if (Mode == 0) {
 			snakes.get(0).color = 3;
 			snakes.get(1).color = 3;
-			snakes.get(0).AI();
-			snakes.get(1).AI();
+//			snakes.get(0).AI();
+//			snakes.get(1).AI();
 		} else if (Mode == 1) {
 			snakes.get(0).color = 3;
 			snakes.get(1).x = 2000;
 
 		} else if (Mode == 2) {
-			snakes.get(1).AI();
+//			snakes.get(1).AI();
 			snakes.get(0).color = 2;
 			snakes.get(1).color = 1;
 
@@ -145,16 +145,16 @@ public class ObjectsManager {
 			snakes.get(1).color = 1;
 
 			if (manual = false) {
-				snakes.get(0).AI();
-				snakes.get(1).AI();
+//				snakes.get(0).AI();
+//				snakes.get(1).AI();
 				// make a message on the top right of the screen to check if manual is on for
 				// both snakes
 			}
 			if (mO == false) {
-				snakes.get(0).AI();
+//				snakes.get(0).AI();
 			}
 			if (mC == false) {
-				snakes.get(1).AI();
+//				snakes.get(1).AI();
 			}
 
 			System.out.println("Red Snake X: " + snakes.get(0).x + " Y:" + snakes.get(0).y);
