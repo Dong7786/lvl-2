@@ -97,8 +97,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	public void keyPressed(KeyEvent e) {
 		// TODO Auto-generated method stub
 		if(manager.Mode == 0) {
-			manager.snakes.get(0).isAI = true;
-			manager.snakes.get(1).isAI = true;
+			
 if(e.getKeyCode() == KeyEvent.VK_1) {
 	manager.snakes.get(0).isAI = false;
 	manager.snakes.get(1).isAI = false;

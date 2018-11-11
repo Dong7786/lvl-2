@@ -21,7 +21,7 @@ public class Snake extends GameObject {
 	boolean isMoving;
 	int size = 0;
 	int color;
-	boolean isAI = false;
+	boolean isAI = true;
 	Snake(int x, int y, int width, int height) {
 		super(x, y, width, height);
 		// TODO Auto-generated constructor

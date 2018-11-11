@@ -131,7 +131,7 @@ public class ObjectsManager {
 			g.setColor(Color.RED);
 
 			g.drawString("SnakeRemastered", 885, 340);
-			g.drawString("Choose your Perfered Game style:", 735, 380);
+			g.drawString("Choose your Preferred Game style:", 735, 380);
 			g.setColor(Color.BLACK);
 			g.drawString("Press 1 for OG Snake", 735, 420);
 			g.drawString("Press 2 to play a Bot", 735, 460);
