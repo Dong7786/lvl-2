@@ -152,6 +152,7 @@ if(e.getKeyCode() == KeyEvent.VK_3) {
 }
 if(e.getKeyCode() == KeyEvent.VK_0) {
 	manager.Mode = 4;
+	
 	manager.snakes.get(0).isAI = true;
 	manager.snakes.get(1).isAI = true;
 	
@@ -252,13 +253,11 @@ if(manager.Mode == 3) {
 	}
 		if(manager.Mode == 4){
 			if(e.getKeyCode() == KeyEvent.VK_M){
-			manager.manual = false;	
-				manager.mC = false;
-				manager.mO = false;
+			manager.snakes.get(1).isAI = true;
+			manager.snakes.get(0).isAI = true;
 			}
 			if (e.getKeyCode() == KeyEvent.VK_D) {
-	manager.manual = true;
-				manager.mC = true;
+	manager.snakes.get(1).isAI = false;
 
 			if ((CSnake.left == false || CSnake.size == 0) && pressedKey == false) {
 				pressedKey = true;
@@ -270,8 +269,7 @@ if(manager.Mode == 3) {
 			}
 
 		} else if (e.getKeyCode() == KeyEvent.VK_A) {
-			manager.manual = true;
-				manager.mC = true;
+			manager.snakes.get(1).isAI = false;
 			if ((CSnake.right == false || CSnake.size == 0) && pressedKey == false) {
 				pressedKey = true;
 				CSnake.left = true;
@@ -281,8 +279,7 @@ if(manager.Mode == 3) {
 
 			}
 		} else if (e.getKeyCode() == KeyEvent.VK_S) {
-			manager.manual = true;
-				manager.mC = true;
+			manager.snakes.get(1).isAI = false;
 			if ((CSnake.up == false || CSnake.size == 0) && pressedKey == false) {
 				pressedKey = true;
 				CSnake.down = true;
@@ -292,8 +289,7 @@ if(manager.Mode == 3) {
 
 			}
 		} else if (e.getKeyCode() == KeyEvent.VK_W) {
-			manager.manual = true;
-				manager.mC = true;
+			manager.snakes.get(1).isAI = false;
 			if ((CSnake.down == false || CSnake.size == 0) && pressedKey == false) {
 				pressedKey = true;
 				CSnake.up = true;
@@ -304,8 +300,7 @@ if(manager.Mode == 3) {
 			}
 		}
 			if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-manager.manual = true;
-manager.mO = true;
+manager.snakes.get(0).isAI = false;
 			if ((snake1.left == false || snake1.size == 0) && keyPressed == false) {
 				keyPressed = true;
 				snake1.right = true;
@@ -316,8 +311,7 @@ manager.mO = true;
 			}
 
 		} else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-		manager.manual = true;
-				manager.mO = true;
+			manager.snakes.get(0).isAI = false;
 
 			if ((snake1.right == false || snake1.size == 0) && keyPressed == false) {
 				keyPressed = true;
@@ -328,8 +322,7 @@ manager.mO = true;
 
 			}
 		} else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-			manager.manual = true;
-				manager.mO = true;
+			manager.snakes.get(0).isAI = false;
 
 			if ((snake1.up == false || snake1.size == 0) && keyPressed == false) {
 				keyPressed = true;
@@ -340,8 +333,7 @@ manager.mO = true;
 
 			}
 		} else if (e.getKeyCode() == KeyEvent.VK_UP) {
-			manager.manual = true;
-				manager.mO = true;
+			manager.snakes.get(0).isAI = false;
 			if ((snake1.down == false || snake1.size == 0) && keyPressed == false) {
 				keyPressed = true;
 				snake1.up = true;
