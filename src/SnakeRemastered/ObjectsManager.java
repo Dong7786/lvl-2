@@ -23,7 +23,8 @@ public class ObjectsManager {
 	boolean manual = false;
 	boolean mO = false;
 	boolean mC = false;
-
+int bestScore1 = 1;
+int bestScore0 = 1;
 	ObjectsManager(Snake s, Snake sn) {
 		for (int i = 0; i < 47; i++) {
 			arr[0][i] = 1;
@@ -69,6 +70,15 @@ public class ObjectsManager {
 	}
 
 	void draw(Graphics g) {
+		if(bestScore1 < snakes.get(1).size) {
+			bestScore1 = snakes.get(1).size + 1;
+			
+		}
+		if(bestScore0 < snakes.get(0).size) {
+			bestScore0 = snakes.get(0).size + 1;
+			
+		}
+		
 		for (int i = 0; i < snakes.size(); i++) {
 			snakes.get(i).draw(g);
 		}
@@ -77,12 +87,15 @@ public class ObjectsManager {
 
 		}
 		Font font = new Font("TRUETYPE_FONT", Font.BOLD, 25);
-
+Font font2 = new Font("TRUETYPE_FONT", Font.TRUETYPE_FONT, 25);
 		g.setFont(font);
+		g.drawString("SnakeRemastered", 845, 40);
+		g.setFont(font2);
 		if (Mode == 0) {
 			g.drawString("Score = " + (snakes.get(0).size + 1), 10, 40);
 
 			g.drawString("Score = " + (snakes.get(1).size + 1), 150, 40);
+			
 
 		}
 		if (Mode == 2 || Mode == 3 || Mode == 4) {
@@ -90,9 +103,16 @@ public class ObjectsManager {
 			g.drawString("Blue = " + (snakes.get(0).size + 1), 10, 40);
 
 			g.drawString("Red = " + (snakes.get(1).size + 1), 150, 40);
+			
+			g.drawString("Press ESC for Menu", 1650, 920);
+			g.drawString("Red Best: " + bestScore1, 1700, 40);
+			g.drawString("Blue Best: " + bestScore0, 1500, 40);
+			
 
 		} else if (Mode == 1) {
 			g.drawString("Score = " + (snakes.get(0).size + 1), 10, 40);
+			g.drawString("Best: " + bestScore0, 150, 40);
+			g.drawString("Press ESC for Menu", 1650, 40);
 
 		}
 		start(g);
