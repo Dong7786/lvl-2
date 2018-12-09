@@ -121,7 +121,6 @@ if(e.getKeyCode() == KeyEvent.VK_2) {
 	manager.snakes.get(1).down = false;
 	manager.snakes.get(1).right = false;
 	manager.snakes.get(1).left = false;
-
 	manager.snakes.get(0).x = 940;
 	manager.snakes.get(0).y = 480;
 	manager.snakes.get(0).size = 0;
