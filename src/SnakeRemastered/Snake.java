@@ -30,6 +30,7 @@ public class Snake extends GameObject {
 	}
 
 	void update() {
+		
 if(isAI  == true) {
 	AI();
 }

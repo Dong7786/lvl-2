@@ -13,7 +13,7 @@ import javax.swing.Timer;
 
 public class GamePanel extends JPanel implements ActionListener, KeyListener {
 
-	Timer timer;
+	static Timer timer;
 	Snake snake1 = new Snake(940, 480, 19, 19);
 	Snake CSnake = new Snake(460, 240, 19, 19);
 	ObjectsManager manager = new ObjectsManager(snake1, CSnake);
@@ -36,7 +36,9 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	}
 
 	void drawGameState(Graphics g) {
-
+		if(manager.Mode == 1) {
+		GamePanel.timer.setDelay((int)(1000/(12 + snake1.size/10)));
+		}
 		manager.draw(g);
 		if (snake1.x > 1880) {
 			snake1.x = 0;
