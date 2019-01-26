@@ -19,6 +19,8 @@ public class SnakeGame {
 	
 	public static void main(String[] args) {
 		SnakeGame snake = new SnakeGame();
+		
+		
 	}
 
 	SnakeGame() {
